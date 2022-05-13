@@ -3,6 +3,8 @@ const router = require("express").Router();
 
 /* Require the models */
 const User = require("../models/User.model");
+const Book = require("../models/Book.model");
+const Reccommendations = require("../models/Reccommendations.model");
 
 /* Middleware */
 const isLoggedOut = require("../middleware/isLoggedOut");

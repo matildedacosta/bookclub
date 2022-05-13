@@ -14,6 +14,7 @@ const User = require("../models/User.model");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
+/* SIGN UP! */
 router.get("/signup", isLoggedOut, (req, res) => {
   res.render("auth/signup");
 });
@@ -38,7 +39,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 
   if (!regex.test(password)) {
-    return res.status(400).render("signup", {
+    return res.status(400).render("auth/signup", {
       errorMessage:
         "Password needs to have at least 8 chars and must contain at least one number, one lowercase and one uppercase letter.",
     });
@@ -50,7 +51,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
     if (found) {
       return res
         .status(400)
-        .render("auth.signup", { errorMessage: "Username already taken." });
+        .render("auth/signup", { errorMessage: "Username already taken." });
     }
 
     // if user is not found, create a new user - start with hashing the password
@@ -62,7 +63,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
         return User.create({
           username,
           email,
-          password: hashedPassword,
+          passwordHash: hashedPassword,
         });
       })
       .then((user) => {
@@ -89,6 +90,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
   });
 });
 
+/* LOG IN */
 router.get("/login", isLoggedOut, (req, res) => {
   res.render("auth/login");
 });
@@ -111,7 +113,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
   }
 
   // Search the database for a user with the username submitted in the form
-  User.findOne({ username })
+  User.findOne({ email })
     .then((user) => {
       // If the user isn't found, send the message that user provided wrong credentials
       if (!user) {
@@ -121,7 +123,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
       }
 
       // If user is found based on the username, check if the in putted password matches the one saved in the database
-      bcrypt.compare(password, user.password).then((isSamePassword) => {
+      bcrypt.compare(password, user.passwordHash).then((isSamePassword) => {
         if (!isSamePassword) {
           return res.status(400).render("auth/login", {
             errorMessage: "Wrong credentials.",
@@ -141,6 +143,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
     });
 });
 
+/* LOG OUT */
 router.get("/logout", isLoggedIn, (req, res) => {
   req.session.destroy((err) => {
     if (err) {

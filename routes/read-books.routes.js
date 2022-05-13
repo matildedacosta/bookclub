@@ -1,8 +1,10 @@
 /* Middleware */
 const router = require("express").Router();
+const axios = require("axios").default;
 
 /* Require the models */
 const User = require("../models/User.model");
+const Book = require("../models/Book.model");
 
 /* Middleware */
 const isLoggedOut = require("../middleware/isLoggedOut");
@@ -13,6 +15,8 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 router.get("/bookshelf", (req, res, next) => {
   res.render("books/bookshelf-books");
 });
+
+
 
 /* Favorite-books */
 

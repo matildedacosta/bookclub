@@ -10,33 +10,28 @@ const bookSchema = new Schema(
       type: String,
     },
     author: {
-        type: [String],
-      },
-      categories: {
-        type: [String],
-      },
+      type: [String],
+    },
+    categories: {
+      type: [String],
+    },
     description: {
-        type: String,
-        default: "I am a booklover! Do you want to be my bookfriend?",
-      },
-      publisher: {
-        type: String,
-      },
-      publishedDate: {
-        type: String,
-      },
-      averageRating: {
-        type: Number,
-      },
+      type: String,
+      default: "I am a booklover! Do you want to be my bookfriend?",
+    },
+    publisher: {
+      type: String,
+    },
+    publishedDate: {
+      type: String,
+    },
+    averageRating: {
+      type: Number,
+    },
     imageUrl: {
       type: String,
       /* default: [""] */
     },
-    friendsList: [{ type: Schema.Types.ObjectId, ref: "User" }],
-    bookshelf: [{ type: Schema.Types.ObjectId, ref: "Book" }],
-    favoriteBooks: [{ type: Schema.Types.ObjectId, ref: "Book" }],
-    reccommended: [{ type: Schema.Types.ObjectId, ref: "Book" }],
-    whislist: [{ type: Schema.Types.ObjectId, ref: "Book" }],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
