@@ -30,6 +30,17 @@ app.use("/", index);
 const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);
 
+/* PROFILE */
+const profileRoutes = require("./routes/profile.routes");
+app.use("/profile", profileRoutes);
+
+/* BOOKS */
+const readBooksRoutes = require("./routes/read-books.routes");
+app.use("/books", readBooksRoutes);
+
+const futureBooksRoutes = require("./routes/future-books.routes");
+app.use("/books", futureBooksRoutes);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
