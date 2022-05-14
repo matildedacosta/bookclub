@@ -17,6 +17,7 @@ router.get("/books", (req, res, next) => {
   res.render("search/search-books");
 });
 
+//route that does the search
 router.get("/search-books", (req, res, next) => {
   const { q } = req.query;
   //console.log(process.env.API_KEY);
@@ -34,7 +35,7 @@ router.get("/search-books", (req, res, next) => {
     .catch((err) => next(err));
 });
 
-//List of book results
+//List of book results page
 
 router.get("/book-results", (req, res, next) => {
   res.render("search/book-results");
