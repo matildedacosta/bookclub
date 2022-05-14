@@ -66,6 +66,14 @@ router.get("/friends", (req, res, next) => {
   res.render("search/search-friends");
 });
 
+//Searching friends
+router.get("/search-friends", (req, res, next) => {
+  const { qfriend } = req.query;
+  User.find({ qfriend })
+    .then((user) => res.render("search/friends-results", { user }))
+    .catch((err) => next(err));
+});
+
 //List of friend results
 
 router.get("/friends-results", (req, res, next) => {
@@ -74,8 +82,14 @@ router.get("/friends-results", (req, res, next) => {
 
 //Details of book
 
-router.get("/friends-details", (req, res, next) => {
-  res.render("search/friends-details");
+router.get("/friends-details/:id", (req, res, next) => {
+  const { id } = req.params;
+  User.findById(id)
+    .then((oneUser) => {
+      console.log(oneUser);
+      res.render("search/friends-details", { oneUser });
+    })
+    .catch((err) => next(err));
 });
 
 /* Exports */

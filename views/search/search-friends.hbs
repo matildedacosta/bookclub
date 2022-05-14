@@ -1,9 +1,11 @@
 <h1>Search friends</h1>
 
-<input
-  type="search"
-  name="searchFriends"
-  id="search-friends"
-  placeholder="Search for friends"
-/>
-<button class="search-friends-button" type="submit">Search</button>
+<form action="/search/search-friends" method="get">
+  <input
+    type="search"
+    name="qfriend"
+    id="search-friends"
+    placeholder="Search for friends"
+  />
+  <button class="search-friends-button" type="submit">Search</button>
+</form>

@@ -36,10 +36,10 @@ app.use("/profile", profileRoutes);
 
 /* BOOKS */
 const readBooksRoutes = require("./routes/read-books.routes");
-app.use("/books", readBooksRoutes);
+app.use("/read-books", readBooksRoutes);
 
 const futureBooksRoutes = require("./routes/future-books.routes");
-app.use("/books", futureBooksRoutes);
+app.use("/future-books", futureBooksRoutes);
 
 /* SEARCH */
 const searchRoutes = require("./routes/search.routes");
