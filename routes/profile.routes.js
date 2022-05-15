@@ -11,7 +11,7 @@ const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
 /* User profile */
-router.get("/", (req, res, next) => {
+router.get("/profile", (req, res, next) => {
   const user = req.session.user._id;
   User.findById(user)
     .then((currentUser) => {
@@ -32,11 +32,12 @@ router.get("/:id/edit", (req, res, next) => {
 });
 
 /* Edit profile - put */
-router.put("/:id/edit", (req, res, next) => {
-  const user = req.session.user._id;
+router.post("/:id/edit", (req, res, next) => {
+  const { user } = req.session.user._id;
   const { name, username, description, imageUrl } = req.body;
+
   User.findByIdAndUpdate(user, { name, username, description, imageUrl })
-    .then((user) => res.redirect("/"))
+    .then((user) => res.redirect("/profile"))
     .catch((err) => next(err));
 });
 
@@ -58,15 +59,34 @@ router.get("/add-friend/:id", (req, res, next) => {
   const { id } = req.params;
   User.findById(id)
     .then((userId) => {
-      return User.findByIdAndUpdate(req.session.user, {
-        $push: { friendsList: userId },
-      }).then(() => {
-        res.render("search/friends-details");
-      });
+      if (req.session.user.friendsList.includes(userId)) {
+        return;
+      } else {
+        return User.findByIdAndUpdate(req.session.user, {
+          $push: { friendsList: userId },
+        }).then(() => {
+          res.render("search/friends-details");
+        });
+      }
     })
     .catch((err) => next(err));
 
   //res.render("user/friends-list");
+});
+
+/* Delete friends */
+
+router.get("/remove-friend/:id", (req, res, next) => {
+  const { id } = req.params;
+  User.findById(id)
+    .then((userId) => {
+      User.findByIdAndUpdate(req.session.user, {
+        $pull: { friendsList: userId },
+      }).then(() => {
+        res.render("user/friends-list");
+      });
+    })
+    .catch((err) => next(err));
 });
 
 /* Exports */

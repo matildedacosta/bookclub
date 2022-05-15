@@ -32,7 +32,7 @@ app.use("/auth", authRoutes);
 
 /* PROFILE */
 const profileRoutes = require("./routes/profile.routes");
-app.use("/profile", profileRoutes);
+app.use("/", profileRoutes);
 
 /* BOOKS */
 const readBooksRoutes = require("./routes/read-books.routes");

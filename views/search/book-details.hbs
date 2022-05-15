@@ -1,19 +1,35 @@
-<h1>Book details</h1>
+<nav class="nav-bar">
+  <a href="/">Home</a>
+  <a href="/profile">Profile</a>
+  <a href="/search/friends">Search friends</a>
+  <a href="/friends">Friends list</a>
+  <a href="/search/books">Search books</a>
+  <a href="/read-books/bookshelf">bookshelf</a>
+  <a href="/read-books/favorites">favorites</a>
+  <a href="/future-books/wishlist">wishlist</a>
+  <a href="/future-books/reccommendations">reccommendations</a>
+  <a href="/auth/logout">logout</a>
+</nav>
 
-<h3>{{book.volumeInfo.title}}</h3>
+<main>
+  <h1>Book details</h1>
 
-{{#each book.volumeInfo.authors}}
-  <p> {{this}}</p>
-{{/each}}
+  <h3>{{book.volumeInfo.title}}</h3>
 
-{{#each book.volumeInfo.categories}}
-  <p> {{this}}</p>
-{{/each}}
+  {{#each book.volumeInfo.authors}}
+    <p> {{this}}</p>
+  {{/each}}
 
-<p>{{book.volumeInfo.publisher}} </p>
-<p>{{book.volumeInfo.publishedDate}} </p>
-<p>{{book.volumeInfo.description}} </p>
+  {{#each book.volumeInfo.categories}}
+    <p> {{this}}</p>
+  {{/each}}
 
-<img src={{book.volumeInfo.imageLinks.thumbnail}} alt="book-cover" />
+  <p>{{book.volumeInfo.publisher}} </p>
+  <p>{{book.volumeInfo.publishedDate}} </p>
+  <p>{{book.volumeInfo.description}} </p>
 
-<a href="/search/book-details/{{book._id}}">Add Book</a>
+  <img src={{book.volumeInfo.imageLinks.thumbnail}} alt="book-cover" />
+
+  <a href="/read-books/bookshelf">Add to bookshelf</a>
+
+</main>

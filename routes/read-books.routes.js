@@ -16,7 +16,31 @@ router.get("/bookshelf", (req, res, next) => {
   res.render("books/bookshelf-books");
 });
 
+router.get("/book-details/:id", (req, res, next) => {
+  const { id } = req.params;
 
+  axios
+    .get(`https://www.googleapis.com/books/v1/volumes/${id}`, {
+      headers: {
+        authorization: `${process.env.API_KEY}`,
+      },
+    })
+    .then(() => {
+      Book.create({
+        id,
+        title,
+        author,
+        categories,
+        description,
+        publisher,
+        publishedDate,
+        averageRating,
+        imageUrl,
+      }).then((book) => {
+        res.redirect("/read-books/bookshelf"), { book };
+      });
+    });
+});
 
 /* Favorite-books */
 

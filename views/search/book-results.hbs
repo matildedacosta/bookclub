@@ -1,12 +1,27 @@
-<h1>List of results</h1>
+<nav class="nav-bar">
+  <a href="/">Home</a>
+  <a href="/profile">Profile</a>
+  <a href="/search/friends">Search friends</a>
+  <a href="/friends">Friends list</a>
+  <a href="/search/books">Search books</a>
+  <a href="/read-books/bookshelf">bookshelf</a>
+  <a href="/read-books/favorites">favorites</a>
+  <a href="/future-books/wishlist">wishlist</a>
+  <a href="/future-books/reccommendations">reccommendations</a>
+  <a href="/auth/logout">logout</a>
+</nav>
 
-{{#each items}}
-  <h4>{{this.volumeInfo.title}}</h4>
-  <img src={{this.volumeInfo.imageLinks.thumbnail}} alt="book-cover" />
-  {{!-- 
+<main>
+  <h1>List of results</h1>
+
+  {{#each items}}
+    <h4>{{this.volumeInfo.title}}</h4>
+    <img src={{this.volumeInfo.imageLinks.thumbnail}} alt="book-cover" />
+    {{!-- 
   {{#each this.volumeInfo.categories}}
     <h2>{{this}}</h2>
   {{/each}} --}}
 
-  <a href="/search/book-details/{{this.id}}">Book Details</a>
-{{/each}}
+    <a href="/search/book-details/{{this.id}}">Book Details</a>
+  {{/each}}
+</main>

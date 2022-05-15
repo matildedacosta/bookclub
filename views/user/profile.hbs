@@ -1,10 +1,28 @@
-<h1>Profile</h1>
+<nav class="nav-bar">
+  <a href="/">Home</a>
+  <a href="/profile">Profile</a>
+  <a href="/search/friends">Search friends</a>
+  <a href="/friends">Friends list</a>
+  <a href="/search/books">Search books</a>
+  <a href="/read-books/bookshelf">bookshelf</a>
+  <a href="/read-books/favorites">favorites</a>
+  <a href="/future-books/wishlist">wishlist</a>
+  <a href="/future-books/reccommendations">reccommendations</a>
+  <a href="/auth/logout">logout</a>
+</nav>
 
-<img src={{currentUser.imageUrl}} alt="book-cover" />
+<main>
+  <h1>Profile</h1>
 
-<p>Hi {{currentUser.name}} </p>
-<p>Username: {{currentUser.username}} </p>
-<p>Email: {{currentUser.email}} </p>
-<p>About me: {{currentUser.description}}</p>
+  <img src={{currentUser.imageUrl}} alt="book-cover" />
 
-<a href="/profile/{{currentUser._id}}/edit/">Edit my Profile</a>
+  <p>Hi {{currentUser.name}} </p>
+  <p>Username: {{currentUser.username}} </p>
+  <p>Email: {{currentUser.email}} </p>
+  <p>About me: {{currentUser.description}}</p>
+
+  <form action="/{{currentUser._id}}/edit" method="get">
+    <button class="button" type="submit">Edit my profile</button>
+  </form>
+</main>
+{{!-- <a href="/profile/{{currentUser._id}}/edit/">Edit my Profile</a> --}}

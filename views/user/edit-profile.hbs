@@ -1,29 +1,48 @@
-<h1>Edit Profile</h1>
+<nav class="nav-bar">
+  <a href="/">Home</a>
+  <a href="/profile">Profile</a>
+  <a href="/search/friends">Search friends</a>
+  <a href="/friends">Friends list</a>
+  <a href="/search/books">Search books</a>
+  <a href="/read-books/bookshelf">bookshelf</a>
+  <a href="/read-books/favorites">favorites</a>
+  <a href="/future-books/wishlist">wishlist</a>
+  <a href="/future-books/reccommendations">reccommendations</a>
+  <a href="/auth/logout">logout</a>
+</nav>
 
-<form action="/{{currentUser._id}}/edit" method="PUT">
-  <label>
-    Username:
+<main>
+  <h1>Edit Profile</h1>
 
-    <input type="username" name="username" value={{user.username}} />
-  </label>
-  {{!  <label>
-    Username:
-    <input type="email" name="email" />
-  </label>
-  <label>
-    Email
-    <input type="email" name="email" />
-  </label>
-  <label>
-    Password
-    <input type="password" name="password" />
-  </label> }}
+  <form action="/{{currentUser._id}}/edit" method="post">
+    <label for="image">Image</label>
+    <input type="file" name="movie-image" id="image" />
+    <label>
+      Name:
 
-  <button type="submit">Update</button>
-</form>
+      <input type="text" name="name" value={{user.name}} />
+    </label>
+    <label>
+      Username:
+      <input type="text" name="username" value={{user.username}} />
+    </label>
+    <label>
+      Email
+      <input type="email" name="email" value={{user.email}} />
+    </label>
+    <label>
+      Password
+      <input type="password" name="password" value={{user.passwordHash}} />
+    </label>
 
-{{#if errorMessage}}
-  {{errorMessage}}
-{{/if}}
+    <a href="/{{currentUser._id}}/edit">Update</a>
+    <button class="button" type="submit">Update</button>
+  </form>
+
+  {{#if errorMessage}}
+    {{errorMessage}}
+  {{/if}}
+
+</main>
 {{! 
 name, username, description, imageUrl } }}
