@@ -49,6 +49,5 @@ router.get("/add-friend/:id", (req, res, next) => {
   //res.render("user/friends-list");
 });
 
-
 /* Exports */
 module.exports = router;
