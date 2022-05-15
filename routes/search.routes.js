@@ -29,7 +29,7 @@ router.get("/search-books", (req, res, next) => {
       `https://www.googleapis.com/books/v1/volumes?q=${q}&key=${process.env.API_KEY}`
     )
     .then((results) => {
-      console.log(results.data);
+      console.log("primeiro", results.data);
       res.render("search/book-results", { items: results.data.items });
     })
     .catch((err) => next(err));
@@ -54,8 +54,8 @@ router.get("/book-details/:id", (req, res, next) => {
       },
     })
     .then((results) => {
-      console.log(results.data);
-      res.render("search/book-details");
+      console.log("segundo", results.data);
+      res.render("search/book-details", { book: results.data });
     })
     .catch((err) => next(err));
 });
@@ -75,13 +75,11 @@ router.get("/search-friends", (req, res, next) => {
 });
 
 //List of friend results
-
 router.get("/friends-results", (req, res, next) => {
   res.render("search/friends-results");
 });
 
-//Details of book
-
+//Details of friend
 router.get("/friends-details/:id", (req, res, next) => {
   const { id } = req.params;
   User.findById(id)

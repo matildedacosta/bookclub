@@ -1,1 +1,19 @@
 <h1>Book details</h1>
+
+<h3>{{book.volumeInfo.title}}</h3>
+
+{{#each book.volumeInfo.authors}}
+  <p> {{this}}</p>
+{{/each}}
+
+{{#each book.volumeInfo.categories}}
+  <p> {{this}}</p>
+{{/each}}
+
+<p>{{book.volumeInfo.publisher}} </p>
+<p>{{book.volumeInfo.publishedDate}} </p>
+<p>{{book.volumeInfo.description}} </p>
+
+<img src={{book.volumeInfo.imageLinks.thumbnail}} alt="book-cover" />
+
+<a href="/search/book-details/{{book._id}}">Add Book</a>

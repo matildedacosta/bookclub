@@ -11,7 +11,6 @@ const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
 /* User profile */
-
 router.get("/", (req, res, next) => {
   res.render("user/profile");
 });
@@ -23,11 +22,12 @@ router.get("/edit", (req, res, next) => {
 
 /* Friends list */
 router.get("/friends", (req, res, next) => {
-  const { id } = req.params;
-  User.findById(id)
+  const user = req.session.user._id;
+  console.log(user);
+  User.findById(user)
     .populate("friendsList")
-    .then((friends) => {
-      res.render("user/friends-list", { friends });
+    .then((currentUser) => {
+      res.render("user/friends-list", { currentUser });
     })
     .catch((err) => next(err));
   //res.render("user/friends-list");
@@ -38,7 +38,7 @@ router.get("/add-friend/:id", (req, res, next) => {
   const { id } = req.params;
   User.findById(id)
     .then((userId) => {
-      return User.findByIdAndUpdate(req.session.currentUser, {
+      return User.findByIdAndUpdate(req.session.user, {
         $push: { friendsList: userId },
       }).then(() => {
         res.render("search/friends-details");
@@ -46,19 +46,9 @@ router.get("/add-friend/:id", (req, res, next) => {
     })
     .catch((err) => next(err));
 
-  res.render("user/friends-list");
+  //res.render("user/friends-list");
 });
 
-/* Add-Friends-populate */
-/* router.get("/add-friend/:id", (req, res, next) => {
-  const { id } = req.params;
-  User.findById(id)
-    .populate("friendsList")
-    .then((friends) => {
-      res.render({ friendsList });
-    })
-    .catch((err) => next(err));
-}); */
 
 /* Exports */
 module.exports = router;
