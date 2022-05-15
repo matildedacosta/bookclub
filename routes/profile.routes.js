@@ -12,12 +12,32 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 
 /* User profile */
 router.get("/", (req, res, next) => {
-  res.render("user/profile");
+  const user = req.session.user._id;
+  User.findById(user)
+    .then((currentUser) => {
+      res.render("user/profile", { currentUser });
+    })
+    .catch((err) => next(err));
 });
 
-/* Edit profile */
-router.get("/edit", (req, res, next) => {
-  res.render("user/edit-profile");
+/* Edit profile - get */
+router.get("/:id/edit", (req, res, next) => {
+  const user = req.session.user._id;
+  console.log(user);
+  User.findById(user)
+    .then((user) => {
+      res.render("user/edit-profile", { user });
+    })
+    .catch((err) => next(err));
+});
+
+/* Edit profile - put */
+router.put("/:id/edit", (req, res, next) => {
+  const user = req.session.user._id;
+  const { name, username, description, imageUrl } = req.body;
+  User.findByIdAndUpdate(user, { name, username, description, imageUrl })
+    .then((user) => res.redirect("/"))
+    .catch((err) => next(err));
 });
 
 /* Friends list */

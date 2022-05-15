@@ -1,1 +1,10 @@
 <h1>Profile</h1>
+
+<img src={{currentUser.imageUrl}} alt="book-cover" />
+
+<p>Hi {{currentUser.name}} </p>
+<p>Username: {{currentUser.username}} </p>
+<p>Email: {{currentUser.email}} </p>
+<p>About me: {{currentUser.description}}</p>
+
+<a href="/profile/{{currentUser._id}}/edit/">Edit my Profile</a>

@@ -1,1 +1,29 @@
 <h1>Edit Profile</h1>
+
+<form action="/{{currentUser._id}}/edit" method="PUT">
+  <label>
+    Username:
+
+    <input type="username" name="username" value={{user.username}} />
+  </label>
+  {{!  <label>
+    Username:
+    <input type="email" name="email" />
+  </label>
+  <label>
+    Email
+    <input type="email" name="email" />
+  </label>
+  <label>
+    Password
+    <input type="password" name="password" />
+  </label> }}
+
+  <button type="submit">Update</button>
+</form>
+
+{{#if errorMessage}}
+  {{errorMessage}}
+{{/if}}
+{{! 
+name, username, description, imageUrl } }}
