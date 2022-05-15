@@ -2,5 +2,9 @@
 
 <form action="/search/search-books" method="get">
   <input type="search" name="q" id="search-books" placeholder="Search books" />
+  <label for="o">relevance</label>
+  <input type="radio" name="o" id="order" value="relevance" checked />
+  <label for="o">newest</label>
+  <input type="radio" name="o" id="order" value="newest" />
   <button class="search-books-button" type="submit">Search</button>
 </form>

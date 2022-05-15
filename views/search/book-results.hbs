@@ -3,6 +3,10 @@
 {{#each items}}
   <h4>{{this.volumeInfo.title}}</h4>
   <img src={{this.volumeInfo.imageLinks.thumbnail}} alt="book-cover" />
+  {{!-- 
+  {{#each this.volumeInfo.categories}}
+    <h2>{{this}}</h2>
+  {{/each}} --}}
 
   <a href="/search/book-details/{{this.id}}">Book Details</a>
 {{/each}}

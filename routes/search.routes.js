@@ -11,8 +11,8 @@ const axios = require("axios");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
+//BOOKS:
 /* Books search */
-
 router.get("/books", (req, res, next) => {
   res.render("search/search-books");
 });
@@ -20,13 +20,14 @@ router.get("/books", (req, res, next) => {
 //route that does the search
 router.get("/search-books", (req, res, next) => {
   const { q } = req.query;
+  const { o } = req.query;
   //console.log(process.env.API_KEY);
 
   q.split(" ").join("+");
 
   axios
     .get(
-      `https://www.googleapis.com/books/v1/volumes?q=${q}&key=${process.env.API_KEY}`
+      `https://www.googleapis.com/books/v1/volumes?q=${q}&maxResults=40&orderBy=${o}&key=${process.env.API_KEY}`
     )
     .then((results) => {
       console.log("primeiro", results.data);
@@ -60,8 +61,8 @@ router.get("/book-details/:id", (req, res, next) => {
     .catch((err) => next(err));
 });
 
+//FRIENDS:
 /* Friends search */
-
 router.get("/friends", (req, res, next) => {
   res.render("search/search-friends");
 });
