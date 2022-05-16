@@ -112,7 +112,7 @@ router.get(
     )
       .then((currentUser) => {
         req.session.user = currentUser;
-        res.render("user/friends-list", { currentUser });
+        res.redirect("/friends");
       })
       .catch((err) => next(err));
   }
