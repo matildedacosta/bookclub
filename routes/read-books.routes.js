@@ -12,10 +12,14 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 const { response } = require("express");
 
 /* Bookshelf */
-
 router.get("/bookshelf", (req, res, next) => {
-  user.findbyif;
-  res.render("books/bookshelf-books");
+  const user = req.session.user._id;
+  User.findById(user)
+    .populate("bookshelf")
+    .then((currentUser) => {
+      res.render("books/bookshelf-books", { currentUser });
+    })
+    .catch((err) => next(err));
 });
 
 router.get("/add-bookshelf/:id", (req, res, next) => {
@@ -33,6 +37,13 @@ router.get("/add-bookshelf/:id", (req, res, next) => {
       Book.create({
         id: bookFromApi.id,
         title: bookFromApi.volumeInfo.title,
+        author: bookFromApi.volumeInfo.author,
+        categories: bookFromApi.volumeInfo.categories,
+        description: bookFromApi.volumeInfo.description,
+        publisher: bookFromApi.volumeInfo.publisher,
+        publishedDate: bookFromApi.volumeInfo.publishedDate,
+        averageRating: bookFromApi.volumeInfo.averageRating,
+        imageUrl: bookFromApi.volumeInfo.imageLinks.thumbnail,
       }).then((book) => {
         User.findByIdAndUpdate(
           req.session.user._id,

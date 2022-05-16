@@ -14,7 +14,11 @@
 <main>
   <h1>Bookshelf</h1>
 
-  {{#each book}}
+  {{#each currentUser.bookshelf}}
+    <img src="{{this.imageUrl}}" alt="book-cover" />
     <h4>{{this.title}}</h4>
   {{/each}}
+
+  {{!-- <a href="/search/book-details/{{this.id}}">Book Details</a> --}}
+  {{!  put the route to go to the details }}
 </main>
