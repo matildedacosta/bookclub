@@ -9,14 +9,16 @@ const Book = require("../models/Book.model");
 /* Middleware */
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const { response } = require("express");
 
 /* Bookshelf */
 
 router.get("/bookshelf", (req, res, next) => {
+  user.findbyif;
   res.render("books/bookshelf-books");
 });
 
-router.get("/book-details/:id", (req, res, next) => {
+router.get("/add-bookshelf/:id", (req, res, next) => {
   const { id } = req.params;
 
   axios
@@ -25,19 +27,23 @@ router.get("/book-details/:id", (req, res, next) => {
         authorization: `${process.env.API_KEY}`,
       },
     })
-    .then(() => {
+    .then((response) => {
+      console.log("aqui", response.data);
+      const bookFromApi = response.data;
       Book.create({
-        id,
-        title,
-        author,
-        categories,
-        description,
-        publisher,
-        publishedDate,
-        averageRating,
-        imageUrl,
+        id: bookFromApi.id,
+        title: bookFromApi.volumeInfo.title,
       }).then((book) => {
-        res.redirect("/read-books/bookshelf"), { book };
+        User.findByIdAndUpdate(
+          req.session.user._id,
+          {
+            $push: { bookshelf: book._id },
+          },
+          { new: true }
+        ).then((updatedUser) => {
+          req.session.user = updatedUser;
+          res.redirect("/read-books/bookshelf");
+        });
       });
     });
 });

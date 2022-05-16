@@ -14,15 +14,12 @@
 <main>
   <h1>Profile</h1>
 
-  <img src={{currentUser.imageUrl}} alt="book-cover" />
+  <img src="{{currentUser.imageUrl}}" alt="profile picture" />
 
   <p>Hi {{currentUser.name}} </p>
   <p>Username: {{currentUser.username}} </p>
   <p>Email: {{currentUser.email}} </p>
   <p>About me: {{currentUser.description}}</p>
 
-  <form action="/{{currentUser._id}}/edit" method="get">
-    <button class="button" type="submit">Edit my profile</button>
-  </form>
+  <a href="/{{currentUser._id}}/edit">Edit my Profile</a>
 </main>
-{{!-- <a href="/profile/{{currentUser._id}}/edit/">Edit my Profile</a> --}}

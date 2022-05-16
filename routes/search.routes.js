@@ -70,7 +70,7 @@ router.get("/friends", (req, res, next) => {
 //Searching friends
 router.get("/search-friends", (req, res, next) => {
   const { qfriend } = req.query;
-  User.find({ qfriend })
+  User.find({ username: qfriend })
     .then((user) => res.render("search/friends-results", { user }))
     .catch((err) => next(err));
 });

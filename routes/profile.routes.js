@@ -33,11 +33,19 @@ router.get("/:id/edit", (req, res, next) => {
 
 /* Edit profile - put */
 router.post("/:id/edit", (req, res, next) => {
-  const { user } = req.session.user._id;
+  const { id } = req.params;
   const { name, username, description, imageUrl } = req.body;
 
-  User.findByIdAndUpdate(user, { name, username, description, imageUrl })
-    .then((user) => res.redirect("/profile"))
+  User.findByIdAndUpdate(
+    id,
+    { name, username, description, imageUrl },
+    { new: true }
+  )
+    .then((updatedUser) => {
+      req.session.user = updatedUser;
+      console.log(updatedUser);
+      res.redirect("/profile");
+    })
     .catch((err) => next(err));
 });
 
@@ -55,36 +63,41 @@ router.get("/friends", (req, res, next) => {
 });
 
 /* Friends Add- friends*/
-router.get("/add-friend/:id", (req, res, next) => {
-  const { id } = req.params;
-  User.findById(id)
-    .then((userId) => {
-      if (req.session.user.friendsList.includes(userId)) {
-        return;
-      } else {
-        return User.findByIdAndUpdate(req.session.user, {
-          $push: { friendsList: userId },
-        }).then(() => {
-          res.render("search/friends-details");
-        });
-      }
-    })
-    .catch((err) => next(err));
+router.get(
+  "/add-friend/:id",
+  (req, res, next) => {
+    const { id } = req.params;
+    console.log("params", id);
+
+    console.log("list", req.session.user.friendsList);
+    if (req.session.user.friendsList.includes(id)) {
+      res.redirect("/");
+      return;
+    }
+
+    User.findByIdAndUpdate(req.session.user._id, {
+      $push: { friendsList: id },
+    }, {new: true})
+      .then((currentUser) => {
+        req.session.user = currentUser;
+        res.render("user/friends-list", { currentUser });
+      })
+      .catch((err) => next(err));
+  }
 
   //res.render("user/friends-list");
-});
+);
 
 /* Delete friends */
 
 router.get("/remove-friend/:id", (req, res, next) => {
   const { id } = req.params;
-  User.findById(id)
-    .then((userId) => {
-      User.findByIdAndUpdate(req.session.user, {
-        $pull: { friendsList: userId },
-      }).then(() => {
-        res.render("user/friends-list");
-      });
+  User.findByIdAndUpdate(req.session.user._id, {
+    $pull: { friendsList: id },
+  })
+    .then((currentUser) => {
+      req.session.user = currentUser;
+      res.render("user/friends-list", { currentUser });
     })
     .catch((err) => next(err));
 });
