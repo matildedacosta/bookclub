@@ -15,8 +15,8 @@
   <h1>Edit Profile</h1>
 
   <form action="/{{user._id}}/edit" method="post">
-    <label for="image">Image</label>
-    <input type="file" name="imageUrl" id="image" />
+    <label for="imageUrl">Image</label>
+    <input type="file" name="imageUrl" id="imageUrl" />
     <label>
       Name:
       <input type="text" name="name" value={{user.name}} />

@@ -14,7 +14,6 @@ const { response } = require("express");
 /* Bookshelf */
 
 router.get("/bookshelf", (req, res, next) => {
-  user.findbyif;
   res.render("books/bookshelf-books");
 });
 
