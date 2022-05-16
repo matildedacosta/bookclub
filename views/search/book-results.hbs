@@ -16,7 +16,14 @@
 
   {{#each items}}
     <h4>{{this.volumeInfo.title}}</h4>
-    <img src={{this.volumeInfo.imageLinks.thumbnail}} alt="book-cover" />
+    {{#if this.volumeInfo.imageLinks.thumbnail}}
+      <img src={{this.volumeInfo.imageLinks.thumbnail}} alt="book-cover" />
+    {{else}}
+      <img
+        src="https://biblioottawalibrary.ca/sites/default/files/book.png"
+        alt="book-cover"
+      />
+    {{/if}}
     {{!-- 
   {{#each this.volumeInfo.categories}}
     <h2>{{this}}</h2>

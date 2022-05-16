@@ -14,19 +14,20 @@
 <main>
   <h1>Book details</h1>
 
-  <h3>{{book.volumeInfo.title}}</h3>
+  <h3>Title: {{book.volumeInfo.title}}</h3>
 
   {{#each book.volumeInfo.authors}}
-    <p> {{this}}</p>
+    <p>Authors: {{this}}</p>
   {{/each}}
+  <p>Genre:
+    {{#each book.volumeInfo.categories}}
+      {{this}}
+    {{/each}}
+  </p>
 
-  {{#each book.volumeInfo.categories}}
-    <p> {{this}}</p>
-  {{/each}}
-
-  <p>{{book.volumeInfo.publisher}} </p>
-  <p>{{book.volumeInfo.publishedDate}} </p>
-  <p>{{book.volumeInfo.description}} </p>
+  <p>Publisher: {{book.volumeInfo.publisher}} </p>
+  <p>Published Date: {{book.volumeInfo.publishedDate}} </p>
+  <p>Description: {{book.volumeInfo.description}} </p>
 
   <img src={{book.volumeInfo.imageLinks.thumbnail}} alt="book-cover" />
 

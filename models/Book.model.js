@@ -30,7 +30,7 @@ const bookSchema = new Schema(
     },
     imageUrl: {
       type: String,
-      /* default: [""] */
+      default: "https://biblioottawalibrary.ca/sites/default/files/book.png",
     },
   },
   {
