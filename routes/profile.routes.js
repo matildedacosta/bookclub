@@ -6,6 +6,9 @@ const User = require("../models/User.model");
 const Book = require("../models/Book.model");
 const Reccommendations = require("../models/Reccommendations.model");
 
+/* REQUIRE CONFIG TO CHANGE PICTURE */
+const fileUploader = require("../config/cloudinary.config");
+
 /* Middleware */
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
@@ -15,37 +18,62 @@ router.get("/profile", (req, res, next) => {
   const user = req.session.user._id;
   User.findById(user)
     .then((currentUser) => {
+      req.session.user = currentUser;
       res.render("user/profile", { currentUser });
     })
     .catch((err) => next(err));
 });
 
 /* Edit profile - get */
-router.get("/:id/edit", (req, res, next) => {
-  const user = req.session.user._id;
-  console.log(user);
-  User.findById(user)
-    .then((user) => {
-      res.render("user/edit-profile", { user });
-    })
-    .catch((err) => next(err));
+router.get(
+  "/:id/edit",
+  fileUploader.single("profile-image"),
+  (req, res, next) => {
+    const user = req.session.user._id;
+    console.log(user);
+    User.findById(user)
+      .then((user) => {
+        res.render("user/edit-profile", { user });
+      })
+      .catch((err) => next(err));
+  }
+);
+
+/* Edit profile - post */
+router.post("/:id/edit", fileUploader.single("imageUrl"), (req, res, next) => {
+  const { id } = req.params;
+  const { name, username, description } = req.body;
+
+  if (req.file) {
+    User.findByIdAndUpdate(
+      id,
+      { name, username, description, imageUrl: req.file.path },
+      { new: true }
+    )
+      .then((updatedUser) => {
+        req.session.user = updatedUser;
+        console.log(updatedUser);
+        res.redirect("/profile");
+      })
+      .catch((err) => next(err));
+  } else {
+    User.findByIdAndUpdate(id, { name, username, description }, { new: true })
+      .then((updatedUser) => {
+        req.session.user = updatedUser;
+        console.log(updatedUser);
+        res.redirect("/profile");
+      })
+      .catch((err) => next(err));
+  }
 });
 
-/* Edit profile - put */
-router.post("/:id/edit", (req, res, next) => {
-  const { id } = req.params;
-  const { name, username, description, imageUrl } = req.body;
+/* DELETE PROFILE */
 
-  User.findByIdAndUpdate(
-    id,
-    { name, username, description, imageUrl },
-    { new: true }
-  )
-    .then((updatedUser) => {
-      req.session.user = updatedUser;
-      console.log(updatedUser);
-      res.redirect("/profile");
-    })
+router.post("/:id/delete", (req, res, next) => {
+  const { id } = req.params;
+
+  User.findByIdAndRemove(id)
+    .then(() => res.redirect("/"))
     .catch((err) => next(err));
 });
 
@@ -75,12 +103,16 @@ router.get(
       return;
     }
 
-    User.findByIdAndUpdate(req.session.user._id, {
-      $push: { friendsList: id },
-    }, {new: true})
+    User.findByIdAndUpdate(
+      req.session.user._id,
+      {
+        $push: { friendsList: id },
+      },
+      { new: true }
+    )
       .then((currentUser) => {
         req.session.user = currentUser;
-        res.render("user/friends-list", { currentUser });
+        res.redirect("/friends");
       })
       .catch((err) => next(err));
   }

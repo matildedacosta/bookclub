@@ -13,13 +13,7 @@ const { response } = require("express");
 
 /* Bookshelf */
 router.get("/bookshelf", (req, res, next) => {
-  const user = req.session.user._id;
-  User.findById(user)
-    .populate("bookshelf")
-    .then((currentUser) => {
-      res.render("books/bookshelf-books", { currentUser });
-    })
-    .catch((err) => next(err));
+  res.render("books/bookshelf-books");
 });
 
 router.get("/add-bookshelf/:id", (req, res, next) => {

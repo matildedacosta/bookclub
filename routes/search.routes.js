@@ -64,7 +64,7 @@ router.get("/book-details/:id", (req, res, next) => {
 //FRIENDS:
 /* Friends search */
 router.get("/friends", (req, res, next) => {
-  res.render("search/search-friends");
+  res.render("search/search-friends", { user: req.session.user });
 });
 
 //Searching friends
