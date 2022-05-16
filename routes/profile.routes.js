@@ -40,13 +40,11 @@ router.get(
 );
 
 /* Edit profile - post */
-router.post(
-  "/:id/edit",
-  fileUploader.single("profile-image"),
-  (req, res, next) => {
-    const { id } = req.params;
-    const { name, username, description, imageUrl } = req.body;
+router.post("/:id/edit", fileUploader.single("imageUrl"), (req, res, next) => {
+  const { id } = req.params;
+  const { name, username, description } = req.body;
 
+  if (req.file) {
     User.findByIdAndUpdate(
       id,
       { name, username, description, imageUrl: req.file.path },
@@ -58,8 +56,16 @@ router.post(
         res.redirect("/profile");
       })
       .catch((err) => next(err));
+  } else {
+    User.findByIdAndUpdate(id, { name, username, description }, { new: true })
+      .then((updatedUser) => {
+        req.session.user = updatedUser;
+        console.log(updatedUser);
+        res.redirect("/profile");
+      })
+      .catch((err) => next(err));
   }
-);
+});
 
 /* DELETE PROFILE */
 
