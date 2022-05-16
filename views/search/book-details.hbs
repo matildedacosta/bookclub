@@ -1,16 +1,3 @@
-<nav class="nav-bar">
-  <a href="/">Home</a>
-  <a href="/profile">Profile</a>
-  <a href="/search/friends">Search friends</a>
-  <a href="/friends">Friends list</a>
-  <a href="/search/books">Search books</a>
-  <a href="/read-books/bookshelf">bookshelf</a>
-  <a href="/read-books/favorites">favorites</a>
-  <a href="/future-books/wishlist">wishlist</a>
-  <a href="/future-books/reccommendations">reccommendations</a>
-  <a href="/auth/logout">logout</a>
-</nav>
-
 <main>
   <h1>Book details</h1>
 
@@ -29,8 +16,18 @@
   <p>Published Date: {{book.volumeInfo.publishedDate}} </p>
   <p>Description: {{book.volumeInfo.description}} </p>
 
-  <img src={{book.volumeInfo.imageLinks.thumbnail}} alt="book-cover" />
+  {{#if this.volumeInfo.imageLinks.thumbnail}}
+    <img src={{this.volumeInfo.imageLinks.thumbnail}} alt="book-cover" />
+  {{else}}
+    <img
+      src="https://biblioottawalibrary.ca/sites/default/files/book.png"
+      alt="book-cover"
+    />
+  {{/if}}
 
+  <a href="/add-reading-book/{{book.id}}">Reading</a>
+  <a href="/future-books/add-wishlist/{{book.id}}">Add to wishlist</a>
   <a href="/read-books/add-bookshelf/{{book.id}}">Add to bookshelf</a>
+  <a href="/read-books/add-favorite-book/{{book.id}}">Add to favorites</a>
 
 </main>

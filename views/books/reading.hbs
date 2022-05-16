@@ -1,13 +1,13 @@
 <main>
-  <h1>Bookshelf</h1>
-  {{!  Information Books: }}
-  {{#each currentUser.bookshelf}}
+  <h1>Currently reading</h1>
+
+  {{#each currentUser.reading}}
     <img src="{{imageUrl}}" alt="book-cover" />
     <h4>{{title}}</h4>
 
     <a href="/search/book-details/{{id}}">Book Details</a>
+    <a href="/read-books/add-bookshelf/{{book.id}}">Add to bookshelf</a>
     <a href="/read-books/add-favorite-book/{{book.id}}">Add to favorites</a>
-    <a href="/read-books/{{_id}}/remove">Remove Book</a>
+    <a href="/read-books/{{_id}}/remove-reading">Remove Book</a>
   {{/each}}
-
 </main>

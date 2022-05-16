@@ -48,7 +48,8 @@ const userSchema = new Schema(
     bookshelf: [{ type: Schema.Types.ObjectId, ref: "Book" }],
     favoriteBooks: [{ type: Schema.Types.ObjectId, ref: "Book" }],
     reccommended: [{ type: Schema.Types.ObjectId, ref: "Reccommendations" }],
-    whislist: [{ type: Schema.Types.ObjectId, ref: "Book" }],
+    wishlist: [{ type: Schema.Types.ObjectId, ref: "Book" }],
+    reading: [{ type: Schema.Types.ObjectId, ref: "Book" }],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

@@ -124,12 +124,16 @@ router.get(
 
 router.get("/remove-friend/:id", (req, res, next) => {
   const { id } = req.params;
-  User.findByIdAndUpdate(req.session.user._id, {
-    $pull: { friendsList: id },
-  })
+  User.findByIdAndUpdate(
+    req.session.user._id,
+    {
+      $pull: { friendsList: id },
+    },
+    { new: true }
+  )
     .then((currentUser) => {
       req.session.user = currentUser;
-      res.render("user/friends-list", { currentUser });
+      res.redirect("/");
     })
     .catch((err) => next(err));
 });

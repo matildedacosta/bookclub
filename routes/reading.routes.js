@@ -5,26 +5,26 @@ const axios = require("axios").default;
 /* Require the models */
 const User = require("../models/User.model");
 const Book = require("../models/Book.model");
-const Reccommendations = require("../models/Reccommendations.model");
 
 /* Middleware */
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const { response } = require("express");
 
-/* Wishlist */
+/* reading-books */
 
-//route for wishlist view
-router.get("/wishlist", (req, res, next) => {
+//reading books view
+router.get("/reading", (req, res, next) => {
   User.findById(req.session.user)
-    .populate("wishlist")
+    .populate("reading")
     .then((currentUser) => {
-      console.log(currentUser.wishlist);
-      res.render("books/wishlist-books", { currentUser });
+      console.log(currentUser.favoriteBooks);
+      res.render("books/reading", { currentUser });
     });
 });
 
-//route to add books to wishlist
-router.get("/add-wishlist/:id", (req, res, next) => {
+//add to reading books
+router.get("/add-reading-book/:id", (req, res, next) => {
   const { id } = req.params;
 
   axios
@@ -34,8 +34,9 @@ router.get("/add-wishlist/:id", (req, res, next) => {
       },
     })
     .then((response) => {
+      console.log("aqui", response.data);
       const bookFromApi = response.data;
-      if (req.session.user.wishlist.includes(bookFromApi)) {
+      if (req.session.user.reading.includes(bookFromApi)) {
         res.redirect("/");
       } else {
         Book.create({
@@ -52,36 +53,30 @@ router.get("/add-wishlist/:id", (req, res, next) => {
           User.findByIdAndUpdate(
             req.session.user._id,
             {
-              $push: { wishlist: book._id },
+              $push: { reading: book._id },
             },
             { new: true }
           ).then((updatedUser) => {
             req.session.user = updatedUser;
-            res.redirect("/future-books/wishlist");
+            res.redirect("/reading");
           });
         });
       }
     });
 });
 
-//route to remove books from wishlist
+//delete favorite book
 
-router.get("/:id/remove-wishlist", (req, res, next) => {
+router.get("/:id/remove-reading", (req, res, next) => {
   const { id } = req.params;
   User.findByIdAndUpdate(req.session.user._id, {
-    $pull: { wishlist: id },
+    $pull: { reading: id },
   })
     .then((currentUser) => {
       req.session.user = currentUser;
-      res.redirect("/future-books/wishlist");
+      res.redirect("/reading");
     })
     .catch((err) => next(err));
-});
-
-/* Reccommended-books */
-
-router.get("/reccommendations", (req, res, next) => {
-  res.render("books/reccommended-books");
 });
 
 module.exports = router;

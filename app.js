@@ -41,6 +41,9 @@ app.use("/read-books", readBooksRoutes);
 const futureBooksRoutes = require("./routes/future-books.routes");
 app.use("/future-books", futureBooksRoutes);
 
+const readingRoutes = require("./routes/reading.routes");
+app.use("/", readingRoutes);
+
 /* SEARCH */
 const searchRoutes = require("./routes/search.routes");
 app.use("/search", searchRoutes);
