@@ -19,8 +19,7 @@ router.get("/books", (req, res, next) => {
 
 //route that does the search
 router.get("/search-books", (req, res, next) => {
-  const { q } = req.query;
-  const { o } = req.query;
+  const { q, o } = req.query;
   //console.log(process.env.API_KEY);
 
   q.split(" ").join("+");

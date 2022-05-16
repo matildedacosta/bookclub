@@ -15,18 +15,11 @@
   <h1>Bookshelf</h1>
   {{!  Information Books: }}
   {{#each currentUser.bookshelf}}
-    <img src="{{this.imageUrl}}" alt="book-cover" />
-    <h4>{{this.title}}</h4>
-    {{!  Button Delete   }}
-    {{!--  <form
-      action="/read-books/{{currentUser.bookshelf._id}}/remove"
-      method="post"
-    >
-      <button type="button">Remove Book</button></form> --}}
-    <a href="/read-books/{{currentUser.bookshelf._id}}/remove">Remove Book</a>
+    <img src="{{imageUrl}}" alt="book-cover" />
+    <h4>{{title}}</h4>
 
-    {{! Button Detail Book }}
-    <a href="/search/book-details/{{currentUser.bookshelf._id}}">Book Details</a>
+    <a href="/read-books/{{_id}}/remove">Remove Book</a>
+    <a href="/search/book-details/{{id}}">Book Details</a>
   {{/each}}
 
 </main>

@@ -13,7 +13,12 @@ const { response } = require("express");
 
 /* Bookshelf */
 router.get("/bookshelf", (req, res, next) => {
-  res.render("books/bookshelf-books");
+  User.findById(req.session.user)
+    .populate("bookshelf")
+    .then((currentUser) => {
+      console.log(currentUser.bookshelf);
+      res.render("books/bookshelf-books", { currentUser });
+    });
 });
 
 router.get("/add-bookshelf/:id", (req, res, next) => {
@@ -28,9 +33,8 @@ router.get("/add-bookshelf/:id", (req, res, next) => {
     .then((response) => {
       console.log("aqui", response.data);
       const bookFromApi = response.data;
-      if (req.session.user.bookshelf.includes(id)) {
+      if (req.session.user.bookshelf.includes(bookFromApi)) {
         res.redirect("/");
-        return;
       } else {
         Book.create({
           id: bookFromApi.id,
@@ -41,7 +45,7 @@ router.get("/add-bookshelf/:id", (req, res, next) => {
           publisher: bookFromApi.volumeInfo.publisher,
           publishedDate: bookFromApi.volumeInfo.publishedDate,
           averageRating: bookFromApi.volumeInfo.averageRating,
-          imageUrl: bookFromApi.volumeInfo.imageLinks.thumbnail,
+          /* imageUrl: bookFromApi.volumeInfo.imageLinks.thumbnail, */
         }).then((book) => {
           User.findByIdAndUpdate(
             req.session.user._id,
@@ -73,7 +77,7 @@ router.get("/:id/remove", (req, res, next) => {
   })
     .then((currentUser) => {
       req.session.user = currentUser;
-      res.render("books/bookshelf", { currentUser });
+      res.redirect("/read-books/bookshelf");
     })
     .catch((err) => next(err));
 });
