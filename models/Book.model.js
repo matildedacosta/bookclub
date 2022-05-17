@@ -28,6 +28,9 @@ const bookSchema = new Schema(
     averageRating: {
       type: Number,
     },
+    pageCount: {
+      type: Number,
+    },
     imageUrl: {
       type: String,
       default: "https://biblioottawalibrary.ca/sites/default/files/book.png",
