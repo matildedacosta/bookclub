@@ -1,7 +1,7 @@
 <main>
   <h1>Friends results</h1>
 
-  {{#each user}}
+  {{#each currentUser}}
     {{this.username}}
 
     <a href="/search/friends-details/{{this._id}}">Friend Details</a>

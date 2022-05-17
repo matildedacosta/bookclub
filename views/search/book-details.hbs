@@ -16,8 +16,8 @@
   <p>Published Date: {{book.volumeInfo.publishedDate}} </p>
   <p>Description: {{book.volumeInfo.description}} </p>
 
-  {{#if this.volumeInfo.imageLinks.thumbnail}}
-    <img src={{this.volumeInfo.imageLinks.thumbnail}} alt="book-cover" />
+  {{#if book.volumeInfo.imageLinks.thumbnail}}
+    <img src={{book.volumeInfo.imageLinks.thumbnail}} alt="book-cover" />
   {{else}}
     <img
       src="https://biblioottawalibrary.ca/sites/default/files/book.png"
@@ -29,5 +29,5 @@
   <a href="/future-books/add-wishlist/{{book.id}}">Add to wishlist</a>
   <a href="/read-books/add-bookshelf/{{book.id}}">Add to bookshelf</a>
   <a href="/read-books/add-favorite-book/{{book.id}}">Add to favorites</a>
-
+    <a href="/future-books/{{_id}}/reccommend">Reccomend Book</a>
 </main>

@@ -32,8 +32,8 @@ router.get(
     const user = req.session.user._id;
     console.log(user);
     User.findById(user)
-      .then((user) => {
-        res.render("user/edit-profile", { user });
+      .then((currentUser) => {
+        res.render("user/edit-profile", { currentUser });
       })
       .catch((err) => next(err));
   }
@@ -71,7 +71,7 @@ router.post("/:id/edit", fileUploader.single("imageUrl"), (req, res, next) => {
 
 router.post("/:id/delete", (req, res, next) => {
   const { id } = req.params;
-
+  req.session.destroy();
   User.findByIdAndRemove(id)
     .then(() => res.redirect("/"))
     .catch((err) => next(err));

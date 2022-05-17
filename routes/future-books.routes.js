@@ -18,7 +18,6 @@ router.get("/wishlist", (req, res, next) => {
   User.findById(req.session.user)
     .populate("wishlist")
     .then((currentUser) => {
-      console.log(currentUser.wishlist);
       res.render("books/wishlist-books", { currentUser });
     });
 });
@@ -47,7 +46,7 @@ router.get("/add-wishlist/:id", (req, res, next) => {
           publisher: bookFromApi.volumeInfo.publisher,
           publishedDate: bookFromApi.volumeInfo.publishedDate,
           averageRating: bookFromApi.volumeInfo.averageRating,
-          /* imageUrl: bookFromApi.volumeInfo.imageLinks.thumbnail, */
+          imageUrl: bookFromApi.volumeInfo.imageLinks.thumbnail,
         }).then((book) => {
           User.findByIdAndUpdate(
             req.session.user._id,
@@ -81,7 +80,15 @@ router.get("/:id/remove-wishlist", (req, res, next) => {
 /* Reccommended-books */
 
 router.get("/reccommendations", (req, res, next) => {
-  res.render("books/reccommended-books");
+
+
+  res.render("books/reccommended-books",  { currentUser: req.session.user });
+
 });
+
+
+
+
+
 
 module.exports = router;

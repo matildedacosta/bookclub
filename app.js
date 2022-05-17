@@ -35,18 +35,22 @@ const profileRoutes = require("./routes/profile.routes");
 app.use("/", profileRoutes);
 
 /* BOOKS */
+/* Read Books Route*/
 const readBooksRoutes = require("./routes/read-books.routes");
 app.use("/read-books", readBooksRoutes);
-
+/* Future Books Route */
 const futureBooksRoutes = require("./routes/future-books.routes");
 app.use("/future-books", futureBooksRoutes);
-
+/* Reading Books Route */
 const readingRoutes = require("./routes/reading.routes");
 app.use("/", readingRoutes);
 
 /* SEARCH */
 const searchRoutes = require("./routes/search.routes");
 app.use("/search", searchRoutes);
+
+
+
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

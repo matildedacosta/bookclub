@@ -1,10 +1,10 @@
 <main>
   <h1>Friends details</h1>
 
-  <img src="{{oneUser.imageUrl}}" alt="profile picture" />
+  <img src="{{currentUser.imageUrl}}" alt="profile picture" />
 
-  {{oneUser.username}}
-  {{oneUser.description}}
+  {{currentUser.username}}
+  {{currentUser.description}}
 
-  <a href="/add-friend/{{oneUser._id}}">Add friend</a>
+  <a href="/add-friend/{{currentUser._id}}">Add friend</a>
 </main>

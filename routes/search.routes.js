@@ -14,13 +14,12 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 //BOOKS:
 /* Books search */
 router.get("/books", (req, res, next) => {
-  res.render("search/search-books");
+  res.render("search/search-books", { currentUser: req.session.user });
 });
 
 //route that does the search
 router.get("/search-books", (req, res, next) => {
   const { q, o } = req.query;
-  //console.log(process.env.API_KEY);
 
   q.split(" ").join("+");
 
@@ -38,7 +37,7 @@ router.get("/search-books", (req, res, next) => {
 //List of book results page
 
 router.get("/book-results", (req, res, next) => {
-  res.render("search/book-results");
+  res.render("search/book-results", { currentUser: req.session.user });
 });
 
 //Details of book
@@ -63,29 +62,31 @@ router.get("/book-details/:id", (req, res, next) => {
 //FRIENDS:
 /* Friends search */
 router.get("/friends", (req, res, next) => {
-  res.render("search/search-friends", { user: req.session.user });
+  res.render("search/search-friends", { currentUser: req.session.user });
 });
 
 //Searching friends
 router.get("/search-friends", (req, res, next) => {
   const { qfriend } = req.query;
   User.find({ username: qfriend })
-    .then((user) => res.render("search/friends-results", { user }))
+    .then((currentUser) =>
+      res.render("search/friends-results", { currentUser })
+    )
     .catch((err) => next(err));
 });
 
 //List of friend results
 router.get("/friends-results", (req, res, next) => {
-  res.render("search/friends-results");
+  console.log(req.session.user);
+  res.render("search/friends-results", { currentUser: req.session.user });
 });
 
 //Details of friend
 router.get("/friends-details/:id", (req, res, next) => {
   const { id } = req.params;
   User.findById(id)
-    .then((oneUser) => {
-      console.log(oneUser);
-      res.render("search/friends-details", { oneUser });
+    .then((currentUser) => {
+      res.render("search/friends-details", { currentUser });
     })
     .catch((err) => next(err));
 });

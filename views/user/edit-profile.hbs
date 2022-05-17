@@ -1,28 +1,40 @@
 <main>
   <h1>Edit Profile</h1>
 
-  <form action="/{{user._id}}/edit" method="post" enctype="multipart/form-data">
+  <form
+    action="/{{currentUser._id}}/edit"
+    method="post"
+    enctype="multipart/form-data"
+  >
     <label for="imageUrl">Image</label>
     <input type="file" name="imageUrl" id="imageUrl" />
     <label>
       Name:
-      <input type="text" name="name" value="{{user.name}}" />
+      <input type="text" name="name" value="{{currentUser.name}}" />
     </label>
     <label>
       Description:
-      <input type="text" name="description" value="{{user.description}}" />
+      <input
+        type="text"
+        name="description"
+        value="{{currentUser.description}}"
+      />
     </label>
     <label>
       Username:
-      <input type="text" name="username" value="{{user.username}}" />
+      <input type="text" name="username" value="{{currentUser.username}}" />
     </label>
     <label>
       Email
-      <input type="email" name="email" value="{{user.email}}" />
+      <input type="email" name="email" value="{{currentUser.email}}" />
     </label>
     <label>
       Password
-      <input type="password" name="password" value="{{user.passwordHash}}" />
+      <input
+        type="password"
+        name="password"
+        value="{{currentUser.passwordHash}}"
+      />
     </label>
 
     <button class="button" type="submit">Update</button>

@@ -115,7 +115,7 @@ router.get("/add-favorite-book/:id", (req, res, next) => {
           publisher: bookFromApi.volumeInfo.publisher,
           publishedDate: bookFromApi.volumeInfo.publishedDate,
           averageRating: bookFromApi.volumeInfo.averageRating,
-          /* imageUrl: bookFromApi.volumeInfo.imageLinks.thumbnail, */
+          imageUrl: bookFromApi.volumeInfo.imageLinks.thumbnail,
         }).then((book) => {
           User.findByIdAndUpdate(
             req.session.user._id,
