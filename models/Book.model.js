@@ -31,6 +31,9 @@ const bookSchema = new Schema(
     pageCount: {
       type: Number,
     },
+    currentPage: {
+      type: Number,
+    },
     imageUrl: {
       type: String,
       default: "https://biblioottawalibrary.ca/sites/default/files/book.png",

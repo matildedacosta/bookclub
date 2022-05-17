@@ -18,7 +18,7 @@ router.get("/reading", (req, res, next) => {
   User.findById(req.session.user)
     .populate("reading")
     .then((currentUser) => {
-      console.log(currentUser.favoriteBooks);
+      //console.log(currentUser.favoriteBooks);
       res.render("books/reading", { currentUser });
     });
 });
@@ -67,7 +67,6 @@ router.get("/add-reading-book/:id", (req, res, next) => {
 });
 
 //delete favorite book
-
 router.get("/:id/remove-reading", (req, res, next) => {
   const { id } = req.params;
   User.findByIdAndUpdate(req.session.user._id, {
@@ -78,6 +77,20 @@ router.get("/:id/remove-reading", (req, res, next) => {
       res.redirect("/reading");
     })
     .catch((err) => next(err));
+});
+
+router.post("/reading/:id", (req, res, next) => {
+  const { id } = req.params;
+  const { currentPage } = req.body;
+
+  console.log(id, currentPage);
+
+  Book.findByIdAndUpdate(id, { currentPage: currentPage }, { new: true })
+    .then((updatedBook) => {
+      console.log(updatedBook);
+      res.redirect("/reading")
+    })
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;
