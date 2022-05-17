@@ -19,7 +19,8 @@ router.get("/wishlist", (req, res, next) => {
     .populate("wishlist")
     .then((currentUser) => {
       res.render("books/wishlist-books", { currentUser });
-    });
+    })
+    .catch((err) => next(err));
 });
 
 //route to add books to wishlist
@@ -67,28 +68,53 @@ router.get("/add-wishlist/:id", (req, res, next) => {
 
 router.get("/:id/remove-wishlist", (req, res, next) => {
   const { id } = req.params;
-  User.findByIdAndUpdate(req.session.user._id, {
-    $pull: { wishlist: id },
-  })
-    .then((currentUser) => {
-      req.session.user = currentUser;
-      res.redirect("/future-books/wishlist");
+
+  Book.findByIdAndRemove(id).then(() => {
+    User.findByIdAndUpdate(req.session.user._id, {
+      $pull: { wishlist: id },
     })
-    .catch((err) => next(err));
+      .then((currentUser) => {
+        req.session.user = currentUser;
+        res.redirect("/future-books/wishlist");
+      })
+      .catch((err) => next(err));
+  });
 });
 
 /* Reccommended-books */
 
 router.get("/reccommendations", (req, res, next) => {
-
-
-  res.render("books/reccommended-books",  { currentUser: req.session.user });
-
+  res.render("books/reccommended-books", { currentUser: req.session.user });
 });
 
+router.get("/:id/reccommend", (req, res, next) => {
+  const { id } = req.params;
+  let user;
+  User.findById(req.session.user._id)
+    .populate("friendsList")
+    .then((userFromDb) => {
+      user = userFromDb;
+      axios
+        .get(`https://www.googleapis.com/books/v1/volumes/${id}`, {
+          headers: {
+            authorization: `${process.env.API_KEY}`,
+          },
+        })
+        .then((results) => {
+          console.log(results.data);
+          res.render("books/reccommend-books", { book: results.data, user });
+        })
+        .catch((err) => next(err));
+    })
+    .catch((err) => next(err));
 
-
-
-
+  /*  Book.findById(id).then((book) => {
+    res.render(
+      "books/reccommend-books",
+      { book },
+      { currentUser: req.session.user }
+    );
+  }); */
+});
 
 module.exports = router;

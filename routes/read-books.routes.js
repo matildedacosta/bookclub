@@ -68,14 +68,16 @@ router.get("/add-bookshelf/:id", (req, res, next) => {
 /* Delete Book from Bookshelf */
 router.get("/:id/remove", (req, res, next) => {
   const { id } = req.params;
-  User.findByIdAndUpdate(req.session.user._id, {
-    $pull: { bookshelf: id },
-  })
-    .then((currentUser) => {
-      req.session.user = currentUser;
-      res.redirect("/read-books/bookshelf");
+  Book.findByIdAndRemove(id).then(() => {
+    User.findByIdAndUpdate(req.session.user._id, {
+      $pull: { bookshelf: id },
     })
-    .catch((err) => next(err));
+      .then((currentUser) => {
+        req.session.user = currentUser;
+        res.redirect("/read-books/bookshelf");
+      })
+      .catch((err) => next(err));
+  });
 });
 
 /* Favorite-books */
@@ -136,14 +138,16 @@ router.get("/add-favorite-book/:id", (req, res, next) => {
 
 router.get("/:id/remove-favorite", (req, res, next) => {
   const { id } = req.params;
-  User.findByIdAndUpdate(req.session.user._id, {
-    $pull: { favoriteBooks: id },
-  })
-    .then((currentUser) => {
-      req.session.user = currentUser;
-      res.redirect("/read-books/favorites");
+  Book.findByIdAndRemove(id).then(() => {
+    User.findByIdAndUpdate(req.session.user._id, {
+      $pull: { favoriteBooks: id },
     })
-    .catch((err) => next(err));
+      .then((currentUser) => {
+        req.session.user = currentUser;
+        res.redirect("/read-books/favorites");
+      })
+      .catch((err) => next(err));
+  });
 });
 
 module.exports = router;

@@ -71,6 +71,7 @@ router.post("/:id/edit", fileUploader.single("imageUrl"), (req, res, next) => {
 
 router.post("/:id/delete", (req, res, next) => {
   const { id } = req.params;
+  req.app.locals.currentUser = null;
   req.session.destroy();
   User.findByIdAndRemove(id)
     .then(() => res.redirect("/"))

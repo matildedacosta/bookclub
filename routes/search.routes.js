@@ -28,8 +28,11 @@ router.get("/search-books", (req, res, next) => {
       `https://www.googleapis.com/books/v1/volumes?q=${q}&maxResults=40&orderBy=${o}&key=${process.env.API_KEY}`
     )
     .then((results) => {
-      console.log("primeiro", results.data);
-      res.render("search/book-results", { items: results.data.items });
+      res.render(
+        "search/book-results",
+        { items: results.data.items }
+        /*  { currentUser: req.session.user } */
+      );
     })
     .catch((err) => next(err));
 });
@@ -54,7 +57,11 @@ router.get("/book-details/:id", (req, res, next) => {
     })
     .then((results) => {
       console.log("segundo", results.data);
-      res.render("search/book-details", { book: results.data });
+      res.render(
+        "search/book-details",
+        { book: results.data }
+        /* { currentUser: req.session.user } */
+      );
     })
     .catch((err) => next(err));
 });
