@@ -83,10 +83,22 @@ router.get("/:id/remove-wishlist", (req, res, next) => {
 
 /* Reccommended-books */
 
+//view for when book is reccommended
 router.get("/reccommendations", (req, res, next) => {
-  res.render("books/reccommended-books", { currentUser: req.session.user });
+  User.findById(req.session.user._id)
+    .populate({
+      path: "reccommended",
+      populate: { path: "book" },
+    })
+    .then((currentUser) => {
+      currentUser.reccommended.forEach((item) => console.log(item.book.title));
+      /*  console.log(currentUser.reccommended); */
+      res.render("books/reccommended-books", { currentUser });
+    })
+    .catch((err) => next(err));
 });
 
+//view for reccommend book
 router.get("/:id/reccommend", (req, res, next) => {
   const { id } = req.params;
   let user;
@@ -101,20 +113,72 @@ router.get("/:id/reccommend", (req, res, next) => {
           },
         })
         .then((results) => {
-          console.log(results.data);
           res.render("books/reccommend-books", { book: results.data, user });
         })
         .catch((err) => next(err));
     })
     .catch((err) => next(err));
+});
 
-  /*  Book.findById(id).then((book) => {
-    res.render(
-      "books/reccommend-books",
-      { book },
-      { currentUser: req.session.user }
-    );
-  }); */
+router.get("/:id/reccommend", (req, res, next) => {
+  const { id } = req.params;
+  User.findById(id)
+    .then(() => {
+      res.render("books/bookshelf-books");
+    })
+    .catch((err) => next(err));
+});
+
+router.post("/:id/reccommend", (req, res, next) => {
+  const { id } = req.params;
+  const { friends, bookID } = req.body;
+
+  axios
+    .get(`https://www.googleapis.com/books/v1/volumes/${bookID}`, {
+      headers: {
+        authorization: `${process.env.API_KEY}`,
+      },
+    })
+    .then((response) => {
+      const bookFromApi = response.data;
+      return Book.create({
+        id: bookFromApi.id,
+        title: bookFromApi.volumeInfo.title,
+        author: bookFromApi.volumeInfo.author,
+        categories: bookFromApi.volumeInfo.categories,
+        description: bookFromApi.volumeInfo.description,
+        publisher: bookFromApi.volumeInfo.publisher,
+        publishedDate: bookFromApi.volumeInfo.publishedDate,
+        averageRating: bookFromApi.volumeInfo.averageRating,
+        imageUrl: bookFromApi.volumeInfo.imageLinks.thumbnail,
+      });
+    })
+    .then((createdBook) => {
+      User.findById(friends).then((foundUser) => {
+        /* console.log("yo", foundUser); */
+        if (foundUser.reccommended.includes(createdBook._id)) {
+          res.redirect("/");
+        } else {
+          Reccommendations.create({
+            book: createdBook._id,
+            reccommendedBy: id,
+            reccommendedTo: friends,
+          }).then((book) => {
+            User.findByIdAndUpdate(
+              friends,
+              {
+                $push: { reccommended: book._id },
+              },
+              { new: true }
+            ).then(() => {
+              res.redirect("/profile");
+            });
+          });
+        }
+      });
+    })
+
+    .catch((err) => next(err));
 });
 
 module.exports = router;

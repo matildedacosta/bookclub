@@ -40,7 +40,7 @@ router.get("/search-books", (req, res, next) => {
 //List of book results page
 
 router.get("/book-results", (req, res, next) => {
-  res.render("search/book-results", { currentUser: req.session.user });
+  res.render("search/book-results");
 });
 
 //Details of book
@@ -56,12 +56,7 @@ router.get("/book-details/:id", (req, res, next) => {
       },
     })
     .then((results) => {
-      console.log("segundo", results.data);
-      res.render(
-        "search/book-details",
-        { book: results.data }
-        /* { currentUser: req.session.user } */
-      );
+      res.render("search/book-details", { book: results.data });
     })
     .catch((err) => next(err));
 });
@@ -69,31 +64,29 @@ router.get("/book-details/:id", (req, res, next) => {
 //FRIENDS:
 /* Friends search */
 router.get("/friends", (req, res, next) => {
-  res.render("search/search-friends", { currentUser: req.session.user });
+  res.render("search/search-friends", {currentUser: req.session.user});
 });
 
 //Searching friends
 router.get("/search-friends", (req, res, next) => {
   const { qfriend } = req.query;
   User.find({ username: qfriend })
-    .then((currentUser) =>
-      res.render("search/friends-results", { currentUser })
-    )
+    .then((user) => res.render("search/friends-results", { user }))
     .catch((err) => next(err));
 });
 
 //List of friend results
 router.get("/friends-results", (req, res, next) => {
   console.log(req.session.user);
-  res.render("search/friends-results", { currentUser: req.session.user });
+  res.render("search/friends-results");
 });
 
 //Details of friend
 router.get("/friends-details/:id", (req, res, next) => {
   const { id } = req.params;
   User.findById(id)
-    .then((currentUser) => {
-      res.render("search/friends-details", { currentUser });
+    .then((user) => {
+      res.render("search/friends-details", { user });
     })
     .catch((err) => next(err));
 });

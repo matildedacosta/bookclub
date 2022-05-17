@@ -1,12 +1,14 @@
 <h3>{{book.volumeInfo.title}}</h3>
 <img src="{{book.volumeInfo.imageLinks.thumbnail}}" alt="book-cover" />
-<form action="/future-books/{{currentUser._id}}/reccommend" method="post">
+<form action="/future-books/{{user._id}}/reccommend" method="post">
 
+
+<input type="text" name="bookID" value="{{book.id}}" hidden 
+>
   <label for="friends">Reccommend to these friends:</label>
   <select name="friends" id="cast" multiple>
     {{#each user.friendsList}}
-      <option value={{_id}}>{{username}}</option>
-
+      <option value="{{_id}}">{{username}}</option>
     {{/each}}
   </select>
   <button type="submit">Reccomend</button>
