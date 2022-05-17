@@ -5,15 +5,10 @@
     <img src="{{imageUrl}}" alt="book-cover" />
     <h4>{{title}}</h4>
 
-    <p>{{pageCount}}</p>
-
     <a href="/search/book-details/{{id}}">Book Details</a>
     <a href="/read-books/add-bookshelf/{{book.id}}">Add to bookshelf</a>
     <a href="/read-books/add-favorite-book/{{book.id}}">Add to favorites</a>
     <a href="/read-books/{{_id}}/remove-reading">Remove Book</a>
-
-
-</main>
 
 {{!  Botton to count pages }}
 <form action="/reading/{{_id}}" method="post">
@@ -21,11 +16,18 @@
   <input
     type="number"
     name="currentPage"
-    id="currentPage"
+    id="currenPage_{{_id}}"
     placeholder="pagesCount"
     value="{{currentPage}}"
   />
+     <p id="pageCount_{{_id}}">{{pageCount}}</p>
   <button class="search-books-button" type="submit">Update</button>
 </form>
 
+
+
+
+<div role="progressbar" aria-valuenow="{{currentPage}}" aria-valuemin="0" aria-valuemax="{{pageCount}}" style="--value:{{#divide currentPage pageCount}}{{/divide}}"></div>
+
+</main>
   {{/each}}

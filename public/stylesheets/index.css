@@ -1,0 +1,17 @@
+.welcome {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about {
+  padding: 0.5rem;
+  border-top: 0.02rem solid black;
+  height: 35vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+}

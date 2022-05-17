@@ -18,7 +18,7 @@ router.get("/reading", (req, res, next) => {
   User.findById(req.session.user)
     .populate("reading")
     .then((currentUser) => {
-      //console.log(currentUser.favoriteBooks);
+      //Weeeeeeeeeeee  🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
       res.render("books/reading", { currentUser });
     });
 });
@@ -88,7 +88,7 @@ router.post("/reading/:id", (req, res, next) => {
   Book.findByIdAndUpdate(id, { currentPage: currentPage }, { new: true })
     .then((updatedBook) => {
       console.log(updatedBook);
-      res.redirect("/reading")
+      res.redirect("/reading");
     })
     .catch((err) => console.log(err));
 });

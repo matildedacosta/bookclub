@@ -5,36 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Bookclub</title>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/style.css" />
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
-  </head>
+      </head>
 
   <body>
-    <main>
-      <nav class="nav-bar">
-  {{#if currentUser}}
-    <a href="/">Home</a>
-    <a href="/profile">Profile</a>
-    <a href="/search/friends">Search friends</a>
-    <a href="/friends">Friends list</a>
-    <a href="/search/books">Search books</a>
-    <a href="/read-books/bookshelf">bookshelf</a>
-    <a href="/read-books/favorites">favorites</a>
-    <a href="/future-books/wishlist">wishlist</a>
-    <a href="/future-books/reccommendations">reccommendations</a>
-    <a href="/auth/logout">logout</a>
+   
 
-  {{else}}
-    <a href="/auth/login">log in</a>
-    <a href="/auth/signup">sign up</a>
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">HomeLogo</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      {{#if currentUser}}
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
 
-  {{/if}}
+          <li class="nav-item dropdown">
+       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Search
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="/search/books">Search books</a></li>
+            <li><a class="dropdown-item" href="/search/friends">Search friends</a></li>
+          </ul>
+        </li>
+
+          <li class="nav-item dropdown">
+       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Profile
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+            <li><a class="dropdown-item" href="/{{currentUser._id}}/edit">Edit profile</a></li>
+            <li><a class="dropdown-item" href="/friends">Friends list</a></li>
+            <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
+          </ul>
+        </li>
+
+       <li class="nav-item dropdown">
+       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Books
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="/reading">Reading</a></li>
+            <li><a class="dropdown-item" href="/read-books/bookshelf">Bookshelf</a></li>
+            <li><a class="dropdown-item" href="/read-books/favorites">Favorite books</a></li>
+            <li><a class="dropdown-item" href="/future-books/wishlist">Wishlist</a></li>
+            <li><a class="dropdown-item" href="/future-books/reccommendations">Reccommendations</a></li>
+          </ul>
+        </li>
+      </ul>
+          {{else}}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Profile
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="/auth/login">Login</a></li>
+            <li><a class="dropdown-item" href="/auth/signup">Sign up</a></li>
+          </ul>
+        </li>
+      </ul>
+        {{/if}}
+    </div>
+  </div>
 </nav>
+<main>
 
     {{{body}}}
 
+</main>
+
+<footer class="footer">
+<h5>By Mariana Sevinate Pontes && Matilde Costa</h5>
+</footer>
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/js/script.js"></script>
   </body>
-</main>
 </html>
