@@ -1,3 +1,6 @@
+main {
+  height: 87vh;
+}
 .welcome {
   height: 50vh;
   display: flex;

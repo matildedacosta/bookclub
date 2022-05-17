@@ -1,17 +1,32 @@
-<main>
+<head>
+  <link rel="stylesheet" href="/stylesheets/search.css" />
+</head>
+
+<section class="search">
   <h1>Search books</h1>
 
-  <form action="/search/search-books" method="get">
-    <input
-      type="search"
-      name="q"
-      id="search-books"
-      placeholder="Search books"
-    />
-    <label for="o">relevance</label>
-    <input type="radio" name="o" id="order" value="relevance" checked />
-    <label for="o">newest</label>
-    <input type="radio" name="o" id="order" value="newest" />
+  <form class="search-form" action="/search/search-books" method="get">
+    <div class="searching">
+      <input
+        class="search-input"
+        type="search"
+        name="q"
+        id="search-books"
+        placeholder="  Search books"
+      />
+      <div class="options">
+        <label for="o">relevance</label>
+        <input type="radio" name="o" id="order" value="relevance" checked />
+        <label for="o">newest</label>
+        <input type="radio" name="o" id="order" value="newest" />
+      </div>
+    </div>
     <button class="search-books-button" type="submit">Search</button>
   </form>
-</main>
+</section>
+
+<section class="suggestions">
+  <a class="category" href="">Drama</a>
+  <a class="category" href="">Drama</a>
+  <a class="category" href="">Drama</a>
+</section>

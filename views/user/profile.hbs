@@ -1,17 +1,29 @@
-<main>
-  <h1>Profile</h1>
+<head>
+  <link rel="stylesheet" href="/stylesheets/profile.css" />
+</head>
 
-  <img src="{{currentUser.imageUrl}}" alt="profile picture" />
+<h1>Profile</h1>
 
-  <p>Hi {{currentUser.name}} </p>
-  <p>Username: {{currentUser.username}} </p>
-  <p>Email: {{currentUser.email}} </p>
-  <p>About me: {{currentUser.description}}</p>
-
-  <a href="/{{currentUser._id}}/edit">Edit my Profile</a>
-
-  <form action="/{{currentUser._id}}/delete" method="post">
-    <button type="submit">Delete profile</button>
-  </form>
-
-</main>
+<section class="profile">
+  <div class="profile-pic-info">
+    <div class="profile-image">
+      <img
+        class="defaul-profile-pic"
+        src="{{currentUser.imageUrl}}"
+        alt="profile picture"
+      />
+    </div>
+    <div class="profile-info">
+      <h3>Hi {{currentUser.name}} </h3>
+      <p><span>Username:</span> {{currentUser.username}} </p>
+      <p><span>Email:</span> {{currentUser.email}} </p>
+      <p><span>About me:</span> {{currentUser.description}}</p>
+    </div>
+  </div>
+  <div class="profile-btn">
+    <a href="/{{currentUser._id}}/edit">Edit my Profile</a>
+    <form action="/{{currentUser._id}}/delete" method="post">
+      <button type="submit">Delete profile</button>
+    </form>
+  </div>
+</section>
