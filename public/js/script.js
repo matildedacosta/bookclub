@@ -6,11 +6,7 @@ document.addEventListener(
   false
 );
 
-/*
-// progressbar.js@1.0.0 version is used
-// Docs: http://progressbarjs.readthedocs.org/en/1.0.0/
-
- let bar = new ProgressBar.Circle(container, {
+var bar = new ProgressBar.Circle(container, {
   color: "#aaa",
   // This has to be the same size as the maximum width to
   // prevent clipping
@@ -28,7 +24,7 @@ document.addEventListener(
     circle.path.setAttribute("stroke", state.color);
     circle.path.setAttribute("stroke-width", state.width);
 
-    let value = Math.round(circle.value() * 100);
+    var value = Math.round(circle.value() * 100);
     if (value === 0) {
       circle.setText("");
     } else {
@@ -39,10 +35,10 @@ document.addEventListener(
 bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
 bar.text.style.fontSize = "2rem";
 
-bar.animate(1.0); // Number from 0.0 to 1.0 */
+bar.animate(1.0); // Number from 0.0 to 1.0
 
-/* const getPer = (currentPage, totalPages) => {
+/*  const getPer = (currentPage, totalPages) => {
   return Math.floor((currentPage * 1) / totalPages);
 };
 
-req.body = getPer(); */
+req.body = getPer();  */
