@@ -38,6 +38,28 @@ router.get("/add-reading-book/:id", (req, res, next) => {
       const bookFromApi = response.data;
       if (req.session.user.reading.includes(bookFromApi)) {
         res.redirect("/");
+      } else if (!bookFromApi.volumeInfo.imageLinks) {
+        Book.create({
+          id: bookFromApi.id,
+          title: bookFromApi.volumeInfo.title,
+          author: bookFromApi.volumeInfo.author,
+          categories: bookFromApi.volumeInfo.categories,
+          description: bookFromApi.volumeInfo.description,
+          publisher: bookFromApi.volumeInfo.publisher,
+          publishedDate: bookFromApi.volumeInfo.publishedDate,
+          averageRating: bookFromApi.volumeInfo.averageRating,
+        }).then((book) => {
+          User.findByIdAndUpdate(
+            req.session.user._id,
+            {
+              $push: { bookshelf: book._id },
+            },
+            { new: true }
+          ).then((updatedUser) => {
+            req.session.user = updatedUser;
+            res.redirect("/reading");
+          });
+        });
       } else {
         Book.create({
           id: bookFromApi.id,
@@ -48,13 +70,12 @@ router.get("/add-reading-book/:id", (req, res, next) => {
           publisher: bookFromApi.volumeInfo.publisher,
           publishedDate: bookFromApi.volumeInfo.publishedDate,
           averageRating: bookFromApi.volumeInfo.averageRating,
-          pageCount: bookFromApi.volumeInfo.pageCount,
           imageUrl: bookFromApi.volumeInfo.imageLinks.thumbnail,
         }).then((book) => {
           User.findByIdAndUpdate(
             req.session.user._id,
             {
-              $push: { reading: book._id },
+              $push: { bookshelf: book._id },
             },
             { new: true }
           ).then((updatedUser) => {

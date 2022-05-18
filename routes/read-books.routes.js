@@ -37,7 +37,29 @@ router.get("/add-bookshelf/:id", (req, res, next) => {
       console.log("aqui", response.data);
       const bookFromApi = response.data;
       if (req.session.user.bookshelf.includes(bookFromApi)) {
-        res.redirect("/");
+        res.redirect("/profile");
+      } else if (!bookFromApi.volumeInfo.imageLinks) {
+        Book.create({
+          id: bookFromApi.id,
+          title: bookFromApi.volumeInfo.title,
+          author: bookFromApi.volumeInfo.author,
+          categories: bookFromApi.volumeInfo.categories,
+          description: bookFromApi.volumeInfo.description,
+          publisher: bookFromApi.volumeInfo.publisher,
+          publishedDate: bookFromApi.volumeInfo.publishedDate,
+          averageRating: bookFromApi.volumeInfo.averageRating,
+        }).then((book) => {
+          User.findByIdAndUpdate(
+            req.session.user._id,
+            {
+              $push: { bookshelf: book._id },
+            },
+            { new: true }
+          ).then((updatedUser) => {
+            req.session.user = updatedUser;
+            res.redirect("/future-books/bookshelf");
+          });
+        });
       } else {
         Book.create({
           id: bookFromApi.id,
@@ -58,7 +80,7 @@ router.get("/add-bookshelf/:id", (req, res, next) => {
             { new: true }
           ).then((updatedUser) => {
             req.session.user = updatedUser;
-            res.redirect("/read-books/bookshelf");
+            res.redirect("/future-books/bookshelf");
           });
         });
       }
@@ -74,8 +96,7 @@ router.get("/:id/remove", (req, res, next) => {
     })
       .then((currentUser) => {
         req.session.user = currentUser;
-      req.app.locals.currentUser = currentUser;
-
+        req.app.locals.currentUser = currentUser;
 
         res.redirect("/read-books/bookshelf");
       })
@@ -87,7 +108,7 @@ router.get("/:id/remove", (req, res, next) => {
 
 //favorite books view
 router.get("/favorites", (req, res, next) => {
-  User.findById(req.session.user)
+  User.findById(req.session.user._id)
     .populate("favoriteBooks")
     .then((user) => {
       console.log(user.favoriteBooks);
@@ -147,7 +168,7 @@ router.get("/:id/remove-favorite", (req, res, next) => {
     })
       .then((currentUser) => {
         req.session.user = currentUser;
-      req.app.locals.currentUser = currentUser;
+        req.app.locals.currentUser = currentUser;
 
         res.redirect("/read-books/favorites");
       })

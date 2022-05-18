@@ -15,7 +15,7 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 
 //route for wishlist view
 router.get("/wishlist", (req, res, next) => {
-  User.findById(req.session.user)
+  User.findById(req.session.user._id)
     .populate("wishlist")
     .then((user) => {
       res.render("books/wishlist-books", { user });
@@ -35,8 +35,31 @@ router.get("/add-wishlist/:id", (req, res, next) => {
     })
     .then((response) => {
       const bookFromApi = response.data;
+
       if (req.session.user.wishlist.includes(bookFromApi)) {
         res.redirect("/");
+      } else if (bookFromApi.volumeInfo.imageLinks === undefined) {
+        Book.create({
+          id: bookFromApi.id,
+          title: bookFromApi.volumeInfo.title,
+          author: bookFromApi.volumeInfo.author,
+          categories: bookFromApi.volumeInfo.categories,
+          description: bookFromApi.volumeInfo.description,
+          publisher: bookFromApi.volumeInfo.publisher,
+          publishedDate: bookFromApi.volumeInfo.publishedDate,
+          averageRating: bookFromApi.volumeInfo.averageRating,
+        }).then((book) => {
+          User.findByIdAndUpdate(
+            req.session.user._id,
+            {
+              $push: { wishlist: book._id },
+            },
+            { new: true }
+          ).then((updatedUser) => {
+            req.session.user = updatedUser;
+            res.redirect("/future-books/wishlist");
+          });
+        });
       } else {
         Book.create({
           id: bookFromApi.id,
@@ -75,7 +98,7 @@ router.get("/:id/remove-wishlist", (req, res, next) => {
     })
       .then((currentUser) => {
         req.session.user = currentUser;
-        req.app.locals.currentUser = currentUser
+        req.app.locals.currentUser = currentUser;
         res.redirect("/future-books/wishlist");
       })
       .catch((err) => next(err));
