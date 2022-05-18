@@ -14,23 +14,31 @@
         alt="book-cover"
       />
     {{/if}}
-
-    <h3>{{book.volumeInfo.title}}</h3>
-    <h5>Average rating of {{book.volumeInfo.averageRating}}</h5>
-
-    {{#each book.volumeInfo.authors}}
-      <h5>Authors: {{this}}</h5>
-    {{/each}}
-    <h5>Genre:
-      {{#each book.volumeInfo.categories}}
-        {{this}}
+    <section class="book-details-info">
+      <h3>{{book.volumeInfo.title}}</h3>
+      {{#if book.volumeInfo.averageRating}}
+        <h5><span class="details-title"> Average rating of</span>
+          {{book.volumeInfo.averageRating}}</h5>
+      {{/if}}
+      {{#each book.volumeInfo.authors}}
+        <h5><span class="details-title">Authors:</span> {{this}}</h5>
       {{/each}}
-    </h5>
+      <h5><span class="details-title">Genre:</span>
+        {{#each book.volumeInfo.categories}}
+          {{this}}
+        {{/each}}
+      </h5>
 
-    <h5>Publisher: {{book.volumeInfo.publisher}} </h5>
-    <h5>Published Date: {{book.volumeInfo.publishedDate}} </h5>
-    <p>Description: {{book.volumeInfo.description}} </p>
-
+      <h5><span class="details-title">Publisher:</span>
+        {{book.volumeInfo.publisher}}
+      </h5>
+      <h5><span class="details-title">Published Date:</span>
+        {{book.volumeInfo.publishedDate}}
+      </h5>
+      <p><span class="details-title">Description:</span>
+        {{book.volumeInfo.description}}
+      </p>
+    </section>
   </section>
 
   <section class="book-details-buttons">

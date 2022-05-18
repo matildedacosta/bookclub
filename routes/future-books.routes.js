@@ -17,8 +17,8 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 router.get("/wishlist", (req, res, next) => {
   User.findById(req.session.user)
     .populate("wishlist")
-    .then((currentUser) => {
-      res.render("books/wishlist-books", { currentUser });
+    .then((user) => {
+      res.render("books/wishlist-books", { user });
     })
     .catch((err) => next(err));
 });
@@ -75,6 +75,7 @@ router.get("/:id/remove-wishlist", (req, res, next) => {
     })
       .then((currentUser) => {
         req.session.user = currentUser;
+        req.app.locals.currentUser = currentUser
         res.redirect("/future-books/wishlist");
       })
       .catch((err) => next(err));
@@ -90,10 +91,10 @@ router.get("/reccommendations", (req, res, next) => {
       path: "reccommended",
       populate: { path: "book" },
     })
-    .then((currentUser) => {
-      currentUser.reccommended.forEach((item) => console.log(item.book.title));
-      /*  console.log(currentUser.reccommended); */
-      res.render("books/reccommended-books", { currentUser });
+    .then((user) => {
+      user.reccommended.forEach((item) => console.log(item.book.title));
+
+      res.render("books/reccommended-books", { user });
     })
     .catch((err) => next(err));
 });

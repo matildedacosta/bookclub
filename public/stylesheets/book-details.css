@@ -1,19 +1,34 @@
-h3,
+main {
+  min-height: 85vh;
+}
+
+h1 {
+  margin-bottom: 5rem;
+}
+
 h5 {
-  text-align: center;
-  margin: 0.5rem;
+  font-size: 0.9rem;
 }
 
 h3 {
-  margin-top: 2rem;
-  font-size: 1rem;
+  margin-bottom: 2rem;
+  font-size: 2rem;
 }
 
 p {
   margin-top: 1rem;
   text-align: justify;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   line-height: 1.6;
+}
+
+.details-title {
+  font-weight: 600;
+}
+
+.book-picture-info-and-buttons img {
+  min-height: 50vh;
+  min-width: 10vw;
 }
 
 .book-picture-info-and-buttons {
@@ -26,27 +41,95 @@ p {
 
 .book-picture-and-info {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
+  gap: 5%;
+}
+
+.book-details-info {
+  width: 38.5vw;
 }
 
 .book-details-buttons {
+  margin-top: 5rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
 
+.book-details-buttons a {
+  font-size: 0.9rem;
+}
+
 .a-button {
   padding: 0.7rem;
-  margin: 1rem;
+  margin: 0.2rem;
   text-decoration: none;
   border: 0.02rem solid black;
   min-height: 2vh;
-  min-width: 15vw;
+  min-width: 10vw;
   font-size: 0.7rem;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media only screen and (max-width: 400px) {
+  h3,
+  h5 {
+    text-align: center;
+    margin: 0.5rem;
+  }
+
+  h3 {
+    margin-top: 2rem;
+    font-size: 1rem;
+  }
+
+  p {
+    margin-top: 1rem;
+    text-align: justify;
+    font-size: 0.7rem;
+    line-height: 1.6;
+  }
+  .book-picture-info-and-buttons img {
+    min-height: 35vh;
+    min-width: 10vw;
+  }
+
+  .book-picture-info-and-buttons {
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .book-picture-and-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .book-details-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .a-button {
+    padding: 0.7rem;
+    margin: 0.2rem;
+    text-decoration: none;
+    border: 0.02rem solid black;
+    min-height: 2vh;
+    min-width: 15vw;
+    font-size: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

@@ -1,5 +1,14 @@
-<h1> </h1>
-{{#each currentUser.bookshelf}}
-  <img src="{{imageUrl}}" alt="book-cover" />
-  <h4>{{title}}</h4>
-{{/each}}
+{{! <head>
+  <link rel="stylesheet" href="/stylesheets/user-books.css" />
+</head> }}
+<div class="user-books-center">
+
+  <img src="{{this.imageUrl}}" alt="book-cover" />
+  <h4>{{this.title}} ok</h4>
+  <h5>{{this.author}}</h5>
+
+  {{#if this.averageRating}}
+    <h5><span class="details-title"> Average rating of</span>
+      {{this.averageRating}}</h5>
+  {{/if}}
+</div>

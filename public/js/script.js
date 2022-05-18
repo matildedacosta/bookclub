@@ -1,5 +1,3 @@
-const ProgressBar = require("progressbar.js");
-
 document.addEventListener(
   "DOMContentLoaded",
   () => {

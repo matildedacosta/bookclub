@@ -17,9 +17,9 @@ const { response } = require("express");
 router.get("/reading", (req, res, next) => {
   User.findById(req.session.user)
     .populate("reading")
-    .then((currentUser) => {
+    .then((user) => {
       //Weeeeeeeeeeee  🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
-      res.render("books/reading", { currentUser });
+      res.render("books/reading", { user });
     });
 });
 
@@ -74,6 +74,8 @@ router.get("/:id/remove-reading", (req, res, next) => {
   })
     .then((currentUser) => {
       req.session.user = currentUser;
+      req.app.locals.currentUser = currentUser;
+
       res.redirect("/reading");
     })
     .catch((err) => next(err));
@@ -101,6 +103,8 @@ router.get("/:id/remove-reading", (req, res, next) => {
     })
       .then((currentUser) => {
         req.session.user = currentUser;
+      req.app.locals.currentUser = currentUser;
+
         res.redirect("/reading");
       })
       .catch((err) => next(err));

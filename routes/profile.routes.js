@@ -84,8 +84,8 @@ router.get("/friends", (req, res, next) => {
   console.log(user);
   User.findById(user)
     .populate("friendsList")
-    .then((currentUser) => {
-      res.render("user/friends-list");
+    .then((user) => {
+      res.render("user/friends-list", { user });
     })
     .catch((err) => next(err));
   //res.render("user/friends-list");
@@ -113,6 +113,7 @@ router.get(
     )
       .then((currentUser) => {
         req.session.user = currentUser;
+        req.app.locals.currentUser = currentUser;
         res.redirect("/friends");
       })
       .catch((err) => next(err));
@@ -134,6 +135,7 @@ router.get("/remove-friend/:id", (req, res, next) => {
   )
     .then((currentUser) => {
       req.session.user = currentUser;
+      req.app.locals.currentUser = currentUser;
       res.redirect("/");
     })
     .catch((err) => next(err));

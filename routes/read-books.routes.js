@@ -17,9 +17,9 @@ const { response } = require("express");
 router.get("/bookshelf", (req, res, next) => {
   User.findById(req.session.user)
     .populate("bookshelf")
-    .then((currentUser) => {
-      console.log(currentUser.bookshelf);
-      res.render("books/bookshelf-books", { currentUser });
+    .then((user) => {
+      console.log(user.bookshelf);
+      res.render("books/bookshelf-books", { user });
     });
 });
 
@@ -48,7 +48,7 @@ router.get("/add-bookshelf/:id", (req, res, next) => {
           publisher: bookFromApi.volumeInfo.publisher,
           publishedDate: bookFromApi.volumeInfo.publishedDate,
           averageRating: bookFromApi.volumeInfo.averageRating,
-          /* imageUrl: bookFromApi.volumeInfo.imageLinks.thumbnail, */
+          imageUrl: bookFromApi.volumeInfo.imageLinks.thumbnail,
         }).then((book) => {
           User.findByIdAndUpdate(
             req.session.user._id,
@@ -74,6 +74,9 @@ router.get("/:id/remove", (req, res, next) => {
     })
       .then((currentUser) => {
         req.session.user = currentUser;
+      req.app.locals.currentUser = currentUser;
+
+
         res.redirect("/read-books/bookshelf");
       })
       .catch((err) => next(err));
@@ -86,9 +89,9 @@ router.get("/:id/remove", (req, res, next) => {
 router.get("/favorites", (req, res, next) => {
   User.findById(req.session.user)
     .populate("favoriteBooks")
-    .then((currentUser) => {
-      console.log(currentUser.favoriteBooks);
-      res.render("books/favorite-books", { currentUser });
+    .then((user) => {
+      console.log(user.favoriteBooks);
+      res.render("books/favorite-books", { user });
     });
 });
 
@@ -144,6 +147,8 @@ router.get("/:id/remove-favorite", (req, res, next) => {
     })
       .then((currentUser) => {
         req.session.user = currentUser;
+      req.app.locals.currentUser = currentUser;
+
         res.redirect("/read-books/favorites");
       })
       .catch((err) => next(err));

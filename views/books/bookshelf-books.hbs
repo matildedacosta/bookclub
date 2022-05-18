@@ -1,15 +1,23 @@
-<main>
+<head>
+  <link rel="stylesheet" href="/stylesheets/user-books.css" />
+</head>
+
   <h1>Bookshelf</h1>
   {{!  Information Books: }}
-{{> bookPartials this}}
-  {{#each currentUser.bookshelf}}
-  {{!--   <img src="{{imageUrl}}" alt="book-cover" />
-    <h4>{{title}}</h4> --}}
+  <section class="user-books"> 
+     <div class="user-book-info">
+</div>
 
-    <a href="/search/book-details/{{id}}">Book Details</a>
-    <a href="/read-books/add-favorite-book/{{book.id}}">Add to favorites</a>
-    <a href="/future-books/{{_id}}/reccommend">Reccomend Book</a>
-    <a href="/read-books/{{_id}}/remove">Remove Book</a>
+
+<div class="user-books-buttons">
+    </div>
+  {{#each user.bookshelf}}
+    {{>bookPartials this}}
+
+{{!--     <a class="a-button" href="/search/book-details/{{id}}">Book Details</a>
+    <a class="a-button" href="/read-books/add-favorite-book/{{book.id}}">Add to favorites</a>
+    <a class="a-button" href="/future-books/{{_id}}/reccommend">Reccomend Book</a>
+    <a class="a-button" href="/read-books/{{_id}}/remove">Remove Book</a> --}}
   {{/each}}
+  </section>
 
-</main>

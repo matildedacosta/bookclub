@@ -1,12 +1,12 @@
 <main>
   <h1>Favorite books</h1>
 
-  {{#each currentUser.favoriteBooks}}
+  {{#each user.favoriteBooks}}
     <img src="{{imageUrl}}" alt="book-cover" />
     <h4>{{title}}</h4>
 
     <a href="/search/book-details/{{id}}">Book Details</a>
     <a href="/read-books/{{_id}}/remove-favorite">Remove Book</a>
-        <a href="/future-books/{{_id}}/reccommend">Reccomend Book</a>
+    <a href="/future-books/{{_id}}/reccommend">Reccomend Book</a>
   {{/each}}
 </main>
