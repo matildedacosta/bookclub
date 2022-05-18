@@ -1,21 +1,27 @@
-<main>
-  <h1>List of results</h1>
+<head>
+  <link rel="stylesheet" href="/stylesheets/books.css" />
+</head>
 
+<h1>List of results</h1>
+
+<section class="book-results">
   {{#each items}}
-    <h4>{{this.volumeInfo.title}}</h4>
-    {{#if this.volumeInfo.imageLinks.thumbnail}}
-      <img src={{this.volumeInfo.imageLinks.thumbnail}} alt="book-cover" />
-    {{else}}
-      <img
-        src="https://biblioottawalibrary.ca/sites/default/files/book.png"
-        alt="book-cover"
-      />
-    {{/if}}
-    {{!-- 
+    <div class="each-book-result">
+      <h4>{{this.volumeInfo.title}}</h4>
+      {{#if this.volumeInfo.imageLinks.thumbnail}}
+        <img src={{this.volumeInfo.imageLinks.thumbnail}} alt="book-cover" />
+      {{else}}
+        <img
+          src="https://biblioottawalibrary.ca/sites/default/files/book.png"
+          alt="book-cover"
+        />
+      {{/if}}
+      {{!-- 
   {{#each this.volumeInfo.categories}}
     <h2>{{this}}</h2>
   {{/each}} --}}
 
-    <a href="/search/book-details/{{this.id}}">Book Details</a>
+      <a href="/search/book-details/{{this.id}}">Book Details</a>
+    </div>
   {{/each}}
-</main>
+</section>

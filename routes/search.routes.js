@@ -14,7 +14,7 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 //BOOKS:
 /* Books search */
 router.get("/books", (req, res, next) => {
-  res.render("search/search-books", { currentUser: req.session.user });
+  res.render("search/search-books");
 });
 
 //route that does the search
@@ -31,7 +31,7 @@ router.get("/search-books", (req, res, next) => {
       res.render(
         "search/book-results",
         { items: results.data.items }
-        /*  { currentUser: req.session.user } */
+        /* */
       );
     })
     .catch((err) => next(err));
@@ -64,12 +64,14 @@ router.get("/book-details/:id", (req, res, next) => {
 //FRIENDS:
 /* Friends search */
 router.get("/friends", (req, res, next) => {
-  res.render("search/search-friends", {currentUser: req.session.user});
+  res.render("search/search-friends");
 });
 
 //Searching friends
 router.get("/search-friends", (req, res, next) => {
   const { qfriend } = req.query;
+  console.log(req.app.locals);
+  console.log("________________________");
   User.find({ username: qfriend })
     .then((user) => res.render("search/friends-results", { user }))
     .catch((err) => next(err));
@@ -77,7 +79,9 @@ router.get("/search-friends", (req, res, next) => {
 
 //List of friend results
 router.get("/friends-results", (req, res, next) => {
-  console.log(req.session.user);
+  console.log(req.app.locals);
+  console.log("________________________");
+  /* console.log(req.session.user); */
   res.render("search/friends-results");
 });
 

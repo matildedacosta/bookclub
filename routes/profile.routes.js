@@ -19,7 +19,7 @@ router.get("/profile", (req, res, next) => {
   User.findById(user)
     .then((currentUser) => {
       req.session.user = currentUser;
-      res.render("user/profile", { currentUser });
+      res.render("user/profile");
     })
     .catch((err) => next(err));
 });
@@ -33,7 +33,7 @@ router.get(
     console.log(user);
     User.findById(user)
       .then((currentUser) => {
-        res.render("user/edit-profile", { currentUser });
+        res.render("user/edit-profile");
       })
       .catch((err) => next(err));
   }
@@ -85,7 +85,7 @@ router.get("/friends", (req, res, next) => {
   User.findById(user)
     .populate("friendsList")
     .then((currentUser) => {
-      res.render("user/friends-list", { currentUser });
+      res.render("user/friends-list");
     })
     .catch((err) => next(err));
   //res.render("user/friends-list");

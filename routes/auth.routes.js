@@ -132,6 +132,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
         }
         req.session.user = user;
         req.app.locals.currentUser = user;
+        console.log(req.app.locals, '__________________________')
         // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
         return res.redirect("/");
       });

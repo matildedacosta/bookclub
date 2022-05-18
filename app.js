@@ -17,6 +17,8 @@ hbs.registerHelper("divide", function (a, b) {
   return Math.floor((a / b) * 100);
 });
 
+hbs.registerPartials(__dirname + "/views/partials");
+
 const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware

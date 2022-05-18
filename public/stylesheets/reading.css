@@ -1,0 +1,247 @@
+main {
+  height: 85vh;
+}
+
+h1 {
+  margin: 2.5rem;
+  text-align: center;
+}
+h4 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+main {
+  height: 85vh;
+}
+
+.each-reading-book {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.picture-and-info {
+  display: flex;
+  gap: 10%;
+}
+
+.picture-and-info img {
+  height: 35vh;
+  width: 15vw;
+}
+
+.reading-info {
+  margin: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6%;
+}
+
+.updating-reading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 2.2rem;
+}
+
+.pages-input {
+  font-size: 0.7rem;
+  width: 5vw;
+  height: 3vh;
+  text-align: center;
+}
+
+.total-pages {
+  font-size: 0.7rem;
+}
+
+.update-reading-button {
+  width: 5vw;
+  height: 3vh;
+  font-size: 0.5rem;
+  text-align: center;
+}
+
+.reading-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  /* gap: 5%; */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.reading-buttons a {
+  margin: 0.2rem;
+  text-decoration: none;
+  border: 0.02rem solid black;
+  height: 4vh;
+  width: 10vw;
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-readings h5 {
+  font-size: 2rem;
+  line-height: 2;
+  /*  margin: 5rem; */
+}
+
+.no-readings a {
+  margin: 8rem;
+  text-decoration: none;
+  border: 0.02rem solid black;
+  height: 4vh;
+  width: 10vw;
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-readings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+}
+
+/* ANIMATION PROGRESSBAR */
+@keyframes growProgressBar {
+  0%,
+  33% {
+    --pgPercentage: 0;
+  }
+  100% {
+    --pgPercentage: var(--value);
+  }
+}
+
+@property --pgPercentage {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+div[role="progressbar"] {
+  --size: 10rem;
+  --fg: #369;
+  --bg: #def;
+  --pgPercentage: var(--value);
+  animation: growProgressBar 3s 1 forwards;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(
+      closest-side,
+      white 80%,
+      transparent 0 99.9%,
+      white 0
+    ),
+    conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0);
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: calc(var(--size) / 5);
+  color: var(--fg);
+}
+
+div[role="progressbar"]::before {
+  counter-reset: percentage var(--value);
+  content: counter(percentage) "%";
+}
+
+@media only screen and (max-width: 400px) {
+  h4 {
+    font-size: 1rem;
+  }
+
+  .each-reading-book {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .book-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .picture-and-info {
+    display: flex;
+    gap: 5%;
+  }
+
+  .picture-and-info img {
+    height: 30vh;
+    width: 40vw;
+  }
+
+  .reading-info {
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5%;
+  }
+
+  .updating-reading {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 2.2rem;
+  }
+
+  .pages-input {
+    font-size: 0.7rem;
+    width: 10vw;
+    height: 3vh;
+    text-align: center;
+  }
+
+  .total-pages {
+    font-size: 0.7rem;
+  }
+
+  .update-reading-button {
+    width: 16vw;
+    height: 3vh;
+    font-size: 0.5rem;
+    text-align: center;
+  }
+
+  .reading-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .reading-buttons a {
+    margin: 0.2rem;
+    text-decoration: none;
+    border: 0.02rem solid black;
+    height: 4vh;
+    width: 25vw;
+    font-size: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  div[role="progressbar"] {
+    --size: 6rem;
+  }
+}

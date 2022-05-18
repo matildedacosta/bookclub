@@ -1,0 +1,69 @@
+h1 {
+  margin: 0;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 85vh;
+  gap: 2%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form label {
+  font-size: 1.2rem;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20vw;
+}
+
+form input {
+  margin: 0.5rem;
+  border-radius: 20px;
+  height: 3.5vh;
+}
+
+form button {
+  margin: 2rem;
+  border-radius: 20px;
+  width: 5vw;
+  height: 3vh;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.sign-up-btn {
+  width: 10vw;
+}
+
+@media only screen and (max-width: 400px) {
+  form {
+    width: 100vw;
+  }
+  form label {
+    margin: 1rem;
+  }
+  form label input {
+    height: 5vh;
+  }
+
+  form button {
+    margin: 1rem;
+    width: 30vw;
+    height: 5vh;
+  }
+
+  .sign-up-btn {
+    width: 45vw;
+  }
+}

@@ -86,6 +86,10 @@ main {
 }
 
 @media only screen and (max-width: 400px) {
+  h1 {
+    margin-bottom: 3rem;
+  }
+
   .search-form {
     display: flex;
     flex-direction: column;
@@ -107,9 +111,14 @@ main {
   }
 
   .search-form button {
-    margin-top: 1rem;
+    margin-top: 3rem;
     border: none;
     height: 5vh;
     width: 30vw;
+  }
+
+  .category {
+    height: 12vh;
+    width: 22vw;
   }
 }

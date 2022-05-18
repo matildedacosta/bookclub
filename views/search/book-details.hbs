@@ -1,33 +1,47 @@
-<main>
-  <h1>Book details</h1>
+<head>
+  <link rel="stylesheet" href="/stylesheets/book-details.css" />
+</head>
 
-  <h3>Title: {{book.volumeInfo.title}}</h3>
+<h1>Book details</h1>
 
-  {{#each book.volumeInfo.authors}}
-    <p>Authors: {{this}}</p>
-  {{/each}}
-  <p>Genre:
-    {{#each book.volumeInfo.categories}}
-      {{this}}
+<section class="book-picture-info-and-buttons">
+  <section class="book-picture-and-info">
+    {{#if book.volumeInfo.imageLinks.thumbnail}}
+      <img src={{book.volumeInfo.imageLinks.thumbnail}} alt="book-cover" />
+    {{else}}
+      <img
+        src="https://biblioottawalibrary.ca/sites/default/files/book.png"
+        alt="book-cover"
+      />
+    {{/if}}
+
+    <h3>{{book.volumeInfo.title}}</h3>
+    <h5>Average rating of {{book.volumeInfo.averageRating}}</h5>
+
+    {{#each book.volumeInfo.authors}}
+      <h5>Authors: {{this}}</h5>
     {{/each}}
-  </p>
+    <h5>Genre:
+      {{#each book.volumeInfo.categories}}
+        {{this}}
+      {{/each}}
+    </h5>
 
-  <p>Publisher: {{book.volumeInfo.publisher}} </p>
-  <p>Published Date: {{book.volumeInfo.publishedDate}} </p>
-  <p>Description: {{book.volumeInfo.description}} </p>
+    <h5>Publisher: {{book.volumeInfo.publisher}} </h5>
+    <h5>Published Date: {{book.volumeInfo.publishedDate}} </h5>
+    <p>Description: {{book.volumeInfo.description}} </p>
 
-  {{#if book.volumeInfo.imageLinks.thumbnail}}
-    <img src={{book.volumeInfo.imageLinks.thumbnail}} alt="book-cover" />
-  {{else}}
-    <img
-      src="https://biblioottawalibrary.ca/sites/default/files/book.png"
-      alt="book-cover"
-    />
-  {{/if}}
+  </section>
 
-  <a href="/add-reading-book/{{book.id}}">Reading</a>
-  <a href="/future-books/add-wishlist/{{book.id}}">Add to wishlist</a>
-  <a href="/read-books/add-bookshelf/{{book.id}}">Add to bookshelf</a>
-  <a href="/read-books/add-favorite-book/{{book.id}}">Add to favorites</a>
-  <a href="/future-books/{{book.id}}/reccommend">Reccomend Book</a>
-</main>
+  <section class="book-details-buttons">
+    <a class="a-button" href="/add-reading-book/{{book.id}}">Reading</a>
+    <a class="a-button" href="/future-books/add-wishlist/{{book.id}}">Add to
+      wishlist</a>
+    <a class="a-button" href="/read-books/add-bookshelf/{{book.id}}">Add to
+      bookshelf</a>
+    <a class="a-button" href="/read-books/add-favorite-book/{{book.id}}">Add to
+      favorites</a>
+    <a class="a-button" href="/future-books/{{book.id}}/reccommend">Reccomend
+      Book</a>
+  </section>
+</section>

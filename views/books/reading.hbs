@@ -1,33 +1,51 @@
-<main>
+<head><link rel="stylesheet" href="stylesheets/reading.css"></head>
+  
   <h1>Currently reading</h1>
 
-  {{#each currentUser.reading}}
-    <img src="{{imageUrl}}" alt="book-cover" />
-    <h4>{{title}}</h4>
+  {{#if currentUser.reading}}
 
-    <a href="/search/book-details/{{id}}">Book Details</a>
-    <a href="/read-books/add-bookshelf/{{book.id}}">Add to bookshelf</a>
-    <a href="/read-books/add-favorite-book/{{book.id}}">Add to favorites</a>
-    <a href="/read-books/{{_id}}/remove-reading">Remove Book</a>
+<section class="each-reading-book">
+  {{#each currentUser.reading}}
+
+<section class="reading-info">
+  <div class="picture-and-info" >
+    <img src="{{imageUrl}}" alt="book-cover" />
 
 {{!  Botton to count pages }}
+<div class="book-info">
+    <h4>{{title}}</h4>
+<div role="progressbar" aria-valuenow="{{currentPage}}" aria-valuemin="0" aria-valuemax="{{pageCount}}" style="--value:{{#divide currentPage pageCount}}{{/divide}}"></div>
+<div class="updating-reading">
 <form action="/reading/{{_id}}" method="post">
-  <label for="pagesCount">Couting Pages: </label>
-  <input
+  <label for="pagesCount"></label>
+  <input class="pages-input"
     type="number"
     name="currentPage"
     id="currenPage_{{_id}}"
     placeholder="pagesCount"
     value="{{currentPage}}"
   />
-     <p id="pageCount_{{_id}}">{{pageCount}}</p>
-  <button class="search-books-button" type="submit">Update</button>
+   <span>/</span>  <span class="total-pages" id="pageCount_{{_id}}">{{pageCount}}</span>
+  <button class="update-reading-button" type="submit">Update</button>
+   </div>
 </form>
-
-
-
-
-<div role="progressbar" aria-valuenow="{{currentPage}}" aria-valuemin="0" aria-valuemax="{{pageCount}}" style="--value:{{#divide currentPage pageCount}}{{/divide}}"></div>
-
-</main>
+</div>
+</div>
+<div class="reading-buttons">
+    <a href="/search/book-details/{{id}}">Book Details</a>
+    <a href="/read-books/add-bookshelf/{{book.id}}">Add to bookshelf</a>
+    <a href="/read-books/add-favorite-book/{{book.id}}">Add to favorites</a>
+    <a href="/{{_id}}/remove-reading">Remove Book</a>
+    </div>
+</section>
   {{/each}}
+  </section>
+
+{{else}}
+
+<section class="no-readings">
+<h5>No readings at the moment! <br>Fancy a ride to your wishlist?</h5>
+
+<a class="button" href="/future-books/wishlist">My Wishlist</a>
+</section>
+  {{/if}}

@@ -93,4 +93,18 @@ router.post("/reading/:id", (req, res, next) => {
     .catch((err) => console.log(err));
 });
 
+router.get("/:id/remove-reading", (req, res, next) => {
+  const { id } = req.params;
+  Book.findByIdAndRemove(id).then(() => {
+    User.findByIdAndUpdate(req.session.user._id, {
+      $pull: { reading: id },
+    })
+      .then((currentUser) => {
+        req.session.user = currentUser;
+        res.redirect("/reading");
+      })
+      .catch((err) => next(err));
+  });
+});
+
 module.exports = router;

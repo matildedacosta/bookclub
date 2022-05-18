@@ -1,20 +1,24 @@
+<head>
+  <link rel="stylesheet" href="/stylesheets/authforms.css" />
+</head>
+
 <h1>Sign up</h1>
 
 <form action="/auth/signup" method="POST">
   <label>
-    Username
+    Username:
     <input type="text" name="username" />
   </label>
   <label>
-    Email
+    Email:
     <input type="email" name="email" />
   </label>
   <label>
-    Password
+    Password:
     <input type="password" name="password" />
   </label>
 
-  <button type="submit">Become a friend</button>
+  <button class="sign-up-btn" type="submit">Become a friend</button>
 </form>
 
 {{#if errorMessage}}
