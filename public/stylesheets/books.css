@@ -1,5 +1,12 @@
+.book-results img {
+  min-width: 8vw;
+  min-height: 20vh;
+}
+
 .book-results h4 {
-  font-size: 1rem;
+  color: var(--browncolor);
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
   text-align: center;
 }
 
@@ -11,6 +18,7 @@
 }
 
 .each-book-result {
+  background-color: rgba(255, 255, 255, 0.377);
   margin: 2rem;
   padding: 2rem;
   display: flex;
@@ -19,20 +27,29 @@
   height: 40vh;
   justify-content: center;
   align-items: center;
-  border: 0.1rem solid black;
-  border-radius: 10px;
+  border: 0.1rem solid var(--browncolor);
+  border-radius: 20px;
 }
 
 .each-book-result a {
+  background-color: var(--whitecolor);
+  color: var(--browncolor);
+  border-radius: 20px;
   margin: 1.5rem;
   text-decoration: none;
-  border: 0.02rem solid black;
+  border: 0.02rem solid var(--browncolor);
   min-height: 4vh;
   min-width: 8vw;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.each-book-result a:hover {
+  border: 0.02rem solid var(--whitecolor);
+  background-color: var(--browncolor);
+  color: var(--whitecolor);
 }
 
 @media only screen and (max-width: 400px) {
@@ -56,7 +73,7 @@
     height: 50vh;
     justify-content: center;
     align-items: center;
-    border: 0.1rem solid black;
+    border: 0.1rem solid var(--browncolor);
     border-radius: 10px;
   }
 

@@ -13,12 +13,12 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 
 //BOOKS:
 /* Books search */
-router.get("/books", (req, res, next) => {
+router.get("/books", isLoggedIn, (req, res, next) => {
   res.render("search/search-books");
 });
 
 //route that does the search
-router.get("/search-books", (req, res, next) => {
+router.get("/search-books", isLoggedIn, (req, res, next) => {
   const { q, o } = req.query;
 
   q.split(" ").join("+");
@@ -39,13 +39,13 @@ router.get("/search-books", (req, res, next) => {
 
 //List of book results page
 
-router.get("/book-results", (req, res, next) => {
+router.get("/book-results", isLoggedIn, (req, res, next) => {
   res.render("search/book-results");
 });
 
 //Details of book
 
-router.get("/book-details/:id", (req, res, next) => {
+router.get("/book-details/:id", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
   console.log(id);
 
@@ -63,12 +63,12 @@ router.get("/book-details/:id", (req, res, next) => {
 
 //FRIENDS:
 /* Friends search */
-router.get("/friends", (req, res, next) => {
+router.get("/friends", isLoggedIn, (req, res, next) => {
   res.render("search/search-friends");
 });
 
 //Searching friends
-router.get("/search-friends", (req, res, next) => {
+router.get("/search-friends", isLoggedIn, (req, res, next) => {
   const { qfriend } = req.query;
   console.log(req.app.locals);
   console.log("________________________");
@@ -78,7 +78,7 @@ router.get("/search-friends", (req, res, next) => {
 });
 
 //List of friend results
-router.get("/friends-results", (req, res, next) => {
+router.get("/friends-results", isLoggedIn, (req, res, next) => {
   console.log(req.app.locals);
   console.log("________________________");
   /* console.log(req.session.user); */
@@ -86,7 +86,7 @@ router.get("/friends-results", (req, res, next) => {
 });
 
 //Details of friend
-router.get("/friends-details/:id", (req, res, next) => {
+router.get("/friends-details/:id", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
   User.findById(id)
     .then((user) => {

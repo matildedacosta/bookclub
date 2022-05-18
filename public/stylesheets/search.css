@@ -44,45 +44,76 @@ main {
 }
 
 .options {
+  color: var(--browncolor);
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5%;
+}
+
+.options input {
+  border: 0.01rem solid var(--browncolor);
 }
 
 .search-input {
   width: 40vw;
 }
 .search-form input {
-  border: 0.01rem solid black;
+  border-radius: 20px;
+  border: 0.01rem solid var(--browncolor);
   height: 5vh;
 }
 
 .search-form button {
+  font-size: 1.2rem;
+  background-color: var(--browncolor);
+  color: var(--whitecolor);
+  border-radius: 20px;
   margin-top: 5rem;
   border: none;
   height: 5vh;
   width: 8vw;
 }
 
+button:hover {
+  border: 0.02rem solid var(--browncolor);
+  background-color: var(--whitecolor);
+  color: var(--browncolor);
+}
+
 .suggestions {
   height: 20vh;
-  width: 100vw;
+  width: 55vw;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 5%;
   /*     align-items: center; */
 }
 
 .category {
+  font-size: 1.2rem;
+  border-radius: 20px;
+  margin: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  border: 0.02rem solid black;
-  background-color: antiquewhite;
-  height: 20vh;
-  width: 15vw;
+  border: 0.02rem solid var(--browncolor);
+  background-color: var(--whitecolor);
+  height: 15vh;
+  width: 8vw;
+}
+
+.suggestions a {
+  color: var(--browncolor);
+  text-decoration: none;
+}
+
+.suggestions a:hover {
+  border: 0.02rem solid var(--whitecolor);
+  background-color: var(--browncolor);
+  color: var(--whitecolor);
 }
 
 @media only screen and (max-width: 400px) {
@@ -106,11 +137,12 @@ main {
   }
 
   .search-form input {
-    border: 0.01rem solid black;
+    border: 0.01rem solid var(--browncolor);
     height: 5vh;
   }
 
   .search-form button {
+    font-size: 0.9rem;
     margin-top: 3rem;
     border: none;
     height: 5vh;
@@ -118,6 +150,7 @@ main {
   }
 
   .category {
+    font-size: 0.8rem;
     height: 12vh;
     width: 22vw;
   }

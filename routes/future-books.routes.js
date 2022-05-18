@@ -14,7 +14,7 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 /* Wishlist */
 
 //route for wishlist view
-router.get("/wishlist", (req, res, next) => {
+router.get("/wishlist", isLoggedIn, (req, res, next) => {
   User.findById(req.session.user._id)
     .populate("wishlist")
     .then((user) => {
@@ -24,7 +24,7 @@ router.get("/wishlist", (req, res, next) => {
 });
 
 //route to add books to wishlist
-router.get("/add-wishlist/:id", (req, res, next) => {
+router.get("/add-wishlist/:id", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
 
   axios
@@ -89,7 +89,7 @@ router.get("/add-wishlist/:id", (req, res, next) => {
 
 //route to remove books from wishlist
 
-router.get("/:id/remove-wishlist", (req, res, next) => {
+router.get("/:id/remove-wishlist", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
 
   Book.findByIdAndRemove(id).then(() => {
@@ -108,11 +108,11 @@ router.get("/:id/remove-wishlist", (req, res, next) => {
 /* Reccommended-books */
 
 //view for when book is reccommended
-router.get("/reccommendations", (req, res, next) => {
+router.get("/reccommendations", isLoggedIn, (req, res, next) => {
   User.findById(req.session.user._id)
     .populate({
       path: "reccommended",
-      populate: { path: "book" },
+      populate: { path: "book reccommendedBy" },
     })
     .then((user) => {
       user.reccommended.forEach((item) => console.log(item.book.title));
@@ -123,7 +123,7 @@ router.get("/reccommendations", (req, res, next) => {
 });
 
 //view for reccommend book
-router.get("/:id/reccommend", (req, res, next) => {
+router.get("/:id/reccommend", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
   let user;
   User.findById(req.session.user._id)
@@ -144,11 +144,11 @@ router.get("/:id/reccommend", (req, res, next) => {
     .catch((err) => next(err));
 });
 
-router.get("/:id/reccommend", (req, res, next) => {
+router.get("/:id/reccommend", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
   User.findById(id)
     .then(() => {
-      res.render("books/bookshelf-books");
+      res.render("books/reccommend-books");
     })
     .catch((err) => next(err));
 });

@@ -14,7 +14,7 @@ const { response } = require("express");
 /* reading-books */
 
 //reading books view
-router.get("/reading", (req, res, next) => {
+router.get("/reading", isLoggedIn, (req, res, next) => {
   User.findById(req.session.user)
     .populate("reading")
     .then((user) => {
@@ -24,7 +24,7 @@ router.get("/reading", (req, res, next) => {
 });
 
 //add to reading books
-router.get("/add-reading-book/:id", (req, res, next) => {
+router.get("/add-reading-book/:id", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
 
   axios
@@ -52,7 +52,7 @@ router.get("/add-reading-book/:id", (req, res, next) => {
           User.findByIdAndUpdate(
             req.session.user._id,
             {
-              $push: { bookshelf: book._id },
+              $push: { reading: book._id },
             },
             { new: true }
           ).then((updatedUser) => {
@@ -75,7 +75,7 @@ router.get("/add-reading-book/:id", (req, res, next) => {
           User.findByIdAndUpdate(
             req.session.user._id,
             {
-              $push: { bookshelf: book._id },
+              $push: { reading: book._id },
             },
             { new: true }
           ).then((updatedUser) => {
@@ -88,7 +88,7 @@ router.get("/add-reading-book/:id", (req, res, next) => {
 });
 
 //delete favorite book
-router.get("/:id/remove-reading", (req, res, next) => {
+router.get("/:id/remove-reading", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
   User.findByIdAndUpdate(req.session.user._id, {
     $pull: { reading: id },
@@ -116,7 +116,7 @@ router.post("/reading/:id", (req, res, next) => {
     .catch((err) => console.log(err));
 });
 
-router.get("/:id/remove-reading", (req, res, next) => {
+router.get("/:id/remove-reading", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
   Book.findByIdAndRemove(id).then(() => {
     User.findByIdAndUpdate(req.session.user._id, {
@@ -124,7 +124,7 @@ router.get("/:id/remove-reading", (req, res, next) => {
     })
       .then((currentUser) => {
         req.session.user = currentUser;
-      req.app.locals.currentUser = currentUser;
+        req.app.locals.currentUser = currentUser;
 
         res.redirect("/reading");
       })

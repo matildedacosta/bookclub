@@ -14,7 +14,7 @@ const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
 /* User profile */
-router.get("/profile", (req, res, next) => {
+router.get("/profile", isLoggedIn, (req, res, next) => {
   const user = req.session.user._id;
   User.findById(user)
     .then((currentUser) => {
@@ -27,6 +27,7 @@ router.get("/profile", (req, res, next) => {
 /* Edit profile - get */
 router.get(
   "/:id/edit",
+  isLoggedIn,
   fileUploader.single("profile-image"),
   (req, res, next) => {
     const user = req.session.user._id;
@@ -34,7 +35,7 @@ router.get(
     User.findById(user)
       .then((currentUser) => {
         req.app.locals.currentUser = currentUser;
-        
+
         res.render("user/edit-profile");
       })
       .catch((err) => next(err));
@@ -85,7 +86,7 @@ router.post("/:id/delete", (req, res, next) => {
 });
 
 /* Friends list */
-router.get("/friends", (req, res, next) => {
+router.get("/friends", isLoggedIn, (req, res, next) => {
   const user = req.session.user._id;
   console.log(user);
   User.findById(user)
@@ -100,6 +101,7 @@ router.get("/friends", (req, res, next) => {
 /* Friends Add- friends*/
 router.get(
   "/add-friend/:id",
+  isLoggedIn,
   (req, res, next) => {
     const { id } = req.params;
     console.log("params", id);
@@ -130,7 +132,7 @@ router.get(
 
 /* Delete friends */
 
-router.get("/remove-friend/:id", (req, res, next) => {
+router.get("/remove-friend/:id", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
   User.findByIdAndUpdate(
     req.session.user._id,

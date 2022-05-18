@@ -1,5 +1,3 @@
-
-
 main {
   min-height: 85vh;
 }
@@ -9,6 +7,7 @@ h1 {
   text-align: center;
 }
 h4 {
+  color: var(--browncolor);
   font-size: 1.5rem;
   text-align: center;
 }
@@ -40,6 +39,9 @@ main {
 }
 
 .reading-info {
+  border-radius: 20px;
+  height: 45vh;
+  background-color: rgba(255, 255, 255, 0.349);
   margin: 3rem;
   display: flex;
   justify-content: center;
@@ -55,6 +57,10 @@ main {
 }
 
 .pages-input {
+  text-align: center;
+  background-color: var(--whitecolor);
+  border-radius: 20px;
+  border: 0.05rem solid var(--browncolor);
   font-size: 0.7rem;
   width: 3vw;
   height: 2.8vh;
@@ -72,6 +78,16 @@ main {
   height: 3vh;
   font-size: 0.7rem;
   text-align: center;
+  border: 0.05rem solid var(--whitecolor);
+  background-color: var(--browncolor);
+  color: var(--whitecolor);
+  border-radius: 20px;
+}
+
+.update-reading-button button:hover {
+  border: 0.02rem solid var(--browncolor);
+  background-color: var(--whitecolor);
+  color: var(--browncolor);
 }
 
 .reading-buttons {
@@ -84,15 +100,24 @@ main {
   text-align: center;
 }
 .reading-buttons a {
+  color: var(--browncolor);
+  background-color: var(--whitecolor);
   margin: 0.2rem;
   text-decoration: none;
-  border: 0.02rem solid black;
+  border-radius: 20px;
+  border: 0.02rem solid var(--browncolor);
   height: 4vh;
   width: 10vw;
   font-size: 0.7rem;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.reading-buttons a:hover {
+  border: 0.02rem solid var(--whitecolor);
+  background-color: var(--browncolor);
+  color: var(--whitecolor);
 }
 
 .no-readings h5 {
@@ -104,10 +129,11 @@ main {
 .no-readings a {
   margin: 8rem;
   text-decoration: none;
-  border: 0.02rem solid black;
+  border-radius: 20px;
+  border: 0.02rem solid var(--browncolor);
   height: 4vh;
   width: 10vw;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -193,6 +219,9 @@ div[role="progressbar"]::before {
   }
 
   .reading-info {
+    padding: 5rem;
+    width: 80vw;
+    height: 60vh;
     margin: 2rem;
     display: flex;
     flex-direction: column;
@@ -236,10 +265,9 @@ div[role="progressbar"]::before {
   .reading-buttons a {
     margin: 0.2rem;
     text-decoration: none;
-    border: 0.02rem solid black;
     height: 4vh;
     width: 25vw;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     display: flex;
     justify-content: center;
     align-items: center;

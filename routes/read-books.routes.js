@@ -97,7 +97,6 @@ router.get("/:id/remove", (req, res, next) => {
       .then((currentUser) => {
         req.session.user = currentUser;
         req.app.locals.currentUser = currentUser;
-
         res.redirect("/read-books/bookshelf");
       })
       .catch((err) => next(err));
@@ -131,6 +130,28 @@ router.get("/add-favorite-book/:id", (req, res, next) => {
       const bookFromApi = response.data;
       if (req.session.user.favoriteBooks.includes(bookFromApi)) {
         res.redirect("/");
+      } else if (bookFromApi.volumeInfo.imageLinks === undefined) {
+        Book.create({
+          id: bookFromApi.id,
+          title: bookFromApi.volumeInfo.title,
+          author: bookFromApi.volumeInfo.author,
+          categories: bookFromApi.volumeInfo.categories,
+          description: bookFromApi.volumeInfo.description,
+          publisher: bookFromApi.volumeInfo.publisher,
+          publishedDate: bookFromApi.volumeInfo.publishedDate,
+          averageRating: bookFromApi.volumeInfo.averageRating,
+        }).then((book) => {
+          User.findByIdAndUpdate(
+            req.session.user._id,
+            {
+              $push: { favoriteBooks: book._id },
+            },
+            { new: true }
+          ).then((updatedUser) => {
+            req.session.user = updatedUser;
+            res.redirect("/read-books/favorites");
+          });
+        });
       } else {
         Book.create({
           id: bookFromApi.id,

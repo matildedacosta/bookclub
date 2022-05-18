@@ -4,29 +4,46 @@
 
 <h1>Favorite books</h1>
 
-<section class="user-books">
-  <div class="user-books-center">
-    {{#each user.favoriteBooks}}
-      <div class="user-book-info">
-        {{!--   {{>bookPartials this}} --}}
-        <img src="{{this.imageUrl}}" alt="book-cover" />
-        <h4>{{this.title}}</h4>
+{{#if user.favoriteBooks}}
+  <section class="user-books">
+    <div class="user-books-center">
+      {{#each user.favoriteBooks}}
+        <div class="user-book-info">
+          {{!--   {{>bookPartials this}} --}}
+          <img src="{{this.imageUrl}}" alt="book-cover" />
+          <h4>{{this.title}}</h4>
 
-        {{#if this.author}}
-          <h5>{{this.author}}</h5>
-        {{/if}}
-        {{#if this.averageRating}}
-          <h5><span class="details-title"> Average rating of</span>
-            {{this.averageRating}}</h5>
-        {{/if}}
-        <div class="user-books-buttons">
-          <a class="a-button" href="/search/book-details/{{id}}">Book Details</a>
-          <a class="a-button" href="/read-books/{{_id}}/remove-favorite">Remove
-            Book</a>
-          <a class="a-button" href="/future-books/{{_id}}/reccommend">Reccomend
-            Book</a>
+          {{#if this.author}}
+            <h5>{{this.author}}</h5>
+          {{/if}}
+          {{#if this.averageRating}}
+            <h5><span class="details-title"> Average rating of</span>
+              {{this.averageRating}}</h5>
+          {{/if}}
+          <div class="user-books-buttons">
+            <a class="a-button" href="/search/book-details/{{id}}">Book Details</a>
+            <a
+              class="a-button"
+              href="/future-books/{{_id}}/reccommend"
+            >Reccomend Book</a>
+            <a
+              class="a-button"
+              href="/read-books/{{_id}}/remove-favorite"
+            >Remove Book</a>
+          </div>
         </div>
-      </div>
-    {{/each}}
-  </div>
-</section>
+      {{/each}}
+    </div>
+  </section>
+{{else}}
+  <section class="no-readings">
+    <h5>No favorite books?
+      <br />I am sure we can find you one!</h5>
+
+    <div class="sad-booklover">
+      <img src="/images/book_04.png" alt="sad-booklover" />
+    </div>
+    <a class="dropdown-item" href="/search/books">Search books</a>
+  </section>
+
+{{/if}}
