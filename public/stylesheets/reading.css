@@ -1,5 +1,7 @@
+
+
 main {
-  height: 85vh;
+  min-height: 85vh;
 }
 
 h1 {
@@ -54,8 +56,8 @@ main {
 
 .pages-input {
   font-size: 0.7rem;
-  width: 5vw;
-  height: 3vh;
+  width: 3vw;
+  height: 2.8vh;
   text-align: center;
 }
 
@@ -64,9 +66,11 @@ main {
 }
 
 .update-reading-button {
-  width: 5vw;
+  border-radius: 20px;
+  margin-left: 0.3rem;
+  width: 3vw;
   height: 3vh;
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   text-align: center;
 }
 

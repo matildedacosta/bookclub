@@ -94,6 +94,10 @@ p {
     font-size: 0.7rem;
     line-height: 1.6;
   }
+
+  .book-details-info {
+    width: 80vw;
+  }
   .book-picture-info-and-buttons img {
     min-height: 35vh;
     min-width: 10vw;
@@ -109,11 +113,13 @@ p {
 
   .book-picture-and-info {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
 
   .book-details-buttons {
+    margin-top: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

@@ -33,6 +33,8 @@ router.get(
     console.log(user);
     User.findById(user)
       .then((currentUser) => {
+        req.app.locals.currentUser = currentUser;
+        
         res.render("user/edit-profile");
       })
       .catch((err) => next(err));
@@ -51,6 +53,8 @@ router.post("/:id/edit", fileUploader.single("imageUrl"), (req, res, next) => {
       { new: true }
     )
       .then((updatedUser) => {
+        req.app.locals.currentUser = updatedUser;
+
         req.session.user = updatedUser;
         console.log(updatedUser);
         res.redirect("/profile");
@@ -59,6 +63,8 @@ router.post("/:id/edit", fileUploader.single("imageUrl"), (req, res, next) => {
   } else {
     User.findByIdAndUpdate(id, { name, username, description }, { new: true })
       .then((updatedUser) => {
+        req.app.locals.currentUser = updatedUser;
+
         req.session.user = updatedUser;
         console.log(updatedUser);
         res.redirect("/profile");

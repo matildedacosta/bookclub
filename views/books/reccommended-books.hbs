@@ -1,8 +1,5 @@
-<main>
-  <h1>Reccommended books</h1>
-  {{#each currentUser.reccommended}}
+<h1>Reccommended books</h1>
+{{#each user.reccommended}}
 
-    {{this.book.title}}
-  {{/each}}
-
-</main>
+  {{this.book.title}}
+{{/each}}
