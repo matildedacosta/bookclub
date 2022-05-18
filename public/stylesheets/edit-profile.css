@@ -42,7 +42,7 @@ main {
   flex-direction: column;
 }
 .edit-profile-form {
-  height: 20vh
+  height: 20vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -90,7 +90,7 @@ form label {
 button {
   margin: 2rem;
   border-radius: 20px;
-  width: 15vw;
+  width: 8vw;
   height: 3vh;
   font-size: 0.8rem;
   text-align: center;
@@ -123,6 +123,6 @@ button {
   .profile-info {
     margin: 0.5rem;
   }
-  .edit-profile-btn {
-  }
+ /*  .edit-profile-btn {
+  } */
 }

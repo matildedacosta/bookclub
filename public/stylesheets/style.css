@@ -1,8 +1,9 @@
 :root {
-  --fontcolor: red;
-  --basecolor: white;
-  --alink: black;
-  --ahover: white;
+  --browncolor: #d4a373;
+  --bejecolor: #faedcd;
+  --whitecolor: #fefae0;
+  --lightgreencolor: #e9edc9;
+  --greencolor: #ccd5ae;
 }
 
 *  {
@@ -20,7 +21,7 @@ a {
 }
 
 h1 {
-  color: var(--fontcolor);
+  color: var(--browncolor);
   margin: 2.5rem;
   text-align: center;
 }
@@ -32,6 +33,13 @@ h5 {
 main {
   justify-content: center;
   align-items: center;
+}
+
+.navbar {
+  color: var(--whitecolor);
+}
+.navbar-brand {
+  color: var(--browncolor);
 }
 
 footer {

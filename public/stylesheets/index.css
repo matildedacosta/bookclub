@@ -1,7 +1,6 @@
 main {
   height: 87vh;
-  /* background-color: #faedcd; */
-  background-image: "/";
+  background-color: #faedcd;
 }
 .welcome {
   height: 50vh;
@@ -19,4 +18,12 @@ main {
   justify-content: center;
   align-items: center;
   gap: 5%;
+}
+
+@media only screen and (max-width: 400px) {
+  p {
+    font-size: 0.7rem;
+    text-align: justify;
+    padding: 0px 10px;
+  }
 }

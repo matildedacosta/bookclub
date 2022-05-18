@@ -1,11 +1,19 @@
-<main>
-  <h1>Friends list</h1>
+<head>
+  <link rel="stylesheet" href="/stylesheets/friends-list.css" />
+</head>
+<h1>Friends list</h1>
 
-  {{#each user.friendsList}}
-    <img src="{{this.imageUrl}}" alt="friend-picture" />
-    <h4>{{this.name}}</h4>
-    <h5>{{this.username}}</h5>
-
-    <a href="/remove-friend/{{this._id}}">Remove friend</a>
-  {{/each}}
-</main>
+<section class="friends">
+  <div class="friends-pic-info">
+    <div class="default-profile-pic">
+    {{#each user.friendsList}}
+      <img class="defaul-profile-pic" src="{{this.imageUrl}}" alt="friend-picture" />
+   </div>
+      <div class="friends-info">
+      <h4>{{this.name}}</h4>
+      <h5>{{this.username}}</h5>
+    </div>
+      <a href="/remove-friend/{{this._id}}">Remove friend</a>
+    {{/each}}
+  </div>
+</section>
