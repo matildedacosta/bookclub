@@ -15,7 +15,7 @@ const { response } = require("express");
 
 //bookshelf view
 router.get("/bookshelf", (req, res, next) => {
-  User.findById(req.session.user)
+  User.findById(req.session.user._id)
     .populate("bookshelf")
     .then((user) => {
       console.log(user.bookshelf);
