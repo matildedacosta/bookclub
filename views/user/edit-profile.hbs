@@ -1,47 +1,52 @@
-<main>
-  <h1>Edit Profile</h1>
+<head>
+  <link rel="stylesheet" href="/stylesheets/edit-profile.css" />
+</head>
 
-  <form
-    action="/{{currentUser._id}}/edit"
-    method="post"
-    enctype="multipart/form-data"
-  >
-    <label for="imageUrl">Image</label>
-    <input type="file" name="imageUrl" id="imageUrl" />
-    <label>
-      Name:
-      <input type="text" name="name" value="{{currentUser.name}}" />
-    </label>
-    <label>
-      Description:
-      <input
-        type="text"
-        name="description"
-        value="{{currentUser.description}}"
-      />
-    </label>
-    <label>
-      Username:
-      <input type="text" name="username" value="{{currentUser.username}}" />
-    </label>
-    <label>
-      Email
-      <input type="email" name="email" value="{{currentUser.email}}" />
-    </label>
-    <label>
-      Password
-      <input
-        type="password"
-        name="password"
-        value="{{currentUser.passwordHash}}"
-      />
-    </label>
+<h1>Edit Profile</h1>
+<section class="edit-profile">
+  <div class="profile-info">
+    <form class="edit-profile-form"
+      action="/{{currentUser._id}}/edit"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <label for="imageUrl">Image</label>
+      <input type="file" name="imageUrl" id="imageUrl" />
+      <label>
+        Name:
+        <input type="text" name="name" value=" {{currentUser.name}}" />
+      </label>
+      <label>
+        Description:
+        <input
+          type="text"
+          name="description"
+          value=" {{currentUser.description}}"
+        />
+      </label>
+      <label>
+        Username:
+        <input type="text" name="username" value=" {{currentUser.username}}" />
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" value=" {{currentUser.email}}" />
+      </label>
+      <label>
+        Password
+        <input
+          type="password"
+          name="password"
+          value=" {{currentUser.passwordHash}}"
+        />
+      </label>
 
-    <button class="button" type="submit">Update</button>
-  </form>
+      <button class="button edit-profile-btn" type="submit">Update</button>
+    </form>
 
-  {{#if errorMessage}}
-    {{errorMessage}}
-  {{/if}}
+  </div>
+</section>
 
-</main>
+{{#if errorMessage}}
+  {{errorMessage}}
+{{/if}}

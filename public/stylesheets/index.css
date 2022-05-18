@@ -1,5 +1,7 @@
 main {
   height: 87vh;
+  /* background-color: #faedcd; */
+  background-image: "/";
 }
 .welcome {
   height: 50vh;

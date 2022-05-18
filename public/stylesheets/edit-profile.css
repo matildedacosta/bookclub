@@ -1,0 +1,128 @@
+h1 {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+h3 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+p {
+  margin-bottom: 2rem;
+}
+
+span {
+  font-size: 1rem;
+}
+
+main {
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+}
+
+.edit-profile {
+  height: 45vh;
+  /*  border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.profile-info {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.edit-profile-form {
+  height: 20vh
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* gap: 5%; */
+}
+form input {
+  margin-top: 0.5rem;
+  border-radius: 20px;
+  height: 3.5vh;
+  margin-bottom: 0.2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-description {
+  margin-top: 1rem;
+  border-radius: 20px;
+  height: 3.5vh;
+}
+
+form label {
+  font-size: 1rem;
+  /* margin: 2rem; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20vw;
+}
+
+.edit-profile-btn {
+  margin-top: 1rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* gap: 5%; */
+}
+
+button {
+  margin: 2rem;
+  border-radius: 20px;
+  width: 15vw;
+  height: 3vh;
+  font-size: 0.8rem;
+  text-align: center;
+}
+@media only screen and (max-width: 400px) {
+  h1 {
+    margin-top: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  p {
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+  }
+
+  span {
+    font-size: 0.8rem;
+  }
+  main {
+    height: 80vh;
+  }
+
+  .edit-profile {
+    height: 55vh;
+  }
+  .profile-info {
+    margin: 0.5rem;
+  }
+  .edit-profile-btn {
+  }
+}
