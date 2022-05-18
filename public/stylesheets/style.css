@@ -36,12 +36,20 @@ main {
 }
 
 .navbar {
-  color: var(--whitecolor);
+  color: var(--browncolor);
 }
 .navbar-brand {
   color: var(--browncolor);
 }
-
+.book-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+img {
+  height: 90px;
+}
 footer {
   min-height: 5vh;
   border-top: 0.05rem solid black;

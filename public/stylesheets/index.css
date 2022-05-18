@@ -12,7 +12,7 @@ main {
 .about {
   padding: 0.5rem;
   border-top: 0.02rem solid black;
-  height: 35vh;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
