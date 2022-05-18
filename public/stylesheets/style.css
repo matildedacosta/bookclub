@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 :root {
   --browncolor: #d4a373;
   --bejecolor: #faedcd;
@@ -14,12 +16,12 @@
 body {
   background-color: #faedcd;
   box-sizing: border-box;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Montserrat Alternates", sans-serif;
 }
 
-a {
-  color: #00b7ff;
-}
+/* .navbar {
+  background-color: #00b7ff;
+} */
 
 h1 {
   color: var(--browncolor);
@@ -37,11 +39,37 @@ main {
 }
 
 .navbar {
-  color: var(--browncolor);
+  padding-left: 3rem;
+  color: var(--whitecolor);
 }
+
 .navbar-brand {
+  color: var(--whitecolor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5vh;
+}
+.navbar-brand img {
+  margin-right: 80rem;
+  height: 5vh;
+  width: 3vw;
+}
+
+.dropdown-menu {
+  background-color: var(--bejecolor);
+}
+
+.dropdown-item {
+  text-align: center;
   color: var(--browncolor);
 }
+
+.dropdown-menu a:hover {
+  color: var(--whitecolor);
+  background-color: var(--browncolor);
+}
+
 .book-img {
   display: flex;
   flex-direction: column;
@@ -51,15 +79,40 @@ main {
 img {
   height: 90px;
 }
+
+.nav-link {
+  color: var(--whitecolor);
+}
+
+.nav-link:hover {
+  color: var(--bejecolor);
+}
+
 footer {
-  min-height: 5vh;
-  border-top: 0.05rem solid black;
+  background-color: #d4a37363;
+  color: var(--whitecolor);
+  min-height: 9vh;
+  border-top: 0.05rem solid var(--browncolor);
   padding: 0.5rem;
   display: flex;
+  flex-shrink: 0;
+  flex: 1 0 auto;
   justify-content: center;
   align-items: center;
 }
 
 .liremove {
   list-style-type: none;
+}
+
+@media only screen and (max-width: 400px) {
+  .navbar {
+    padding-left: 0.5rem;
+    color: var(--whitecolor);
+  }
+  .navbar-brand img {
+    margin-right: 0;
+    height: 8vh;
+    width: 15vw;
+  }
 }

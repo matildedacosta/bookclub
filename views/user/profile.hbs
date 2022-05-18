@@ -14,10 +14,11 @@
       />
     </div>
     <div class="profile-info">
-      <h3>Hi {{currentUser.name}} </h3>
+      <h3>Hi <span class="username"> {{currentUser.name}} </span></h3>
       <p><span>Username:</span> {{currentUser.username}} </p>
       <p><span>Email:</span> {{currentUser.email}} </p>
-      <p><span>About me:</span> {{currentUser.description}}</p>
+      <p class="about-p"><span>About me: <br /></span>
+        {{currentUser.description}}</p>
     </div>
   </div>
   <div class="profile-btn">

@@ -1,38 +1,62 @@
+main {
+  height: 80vh;
+}
+
 h1 {
   margin-top: 3rem;
   text-align: center;
 }
 
 h3 {
+  color: var(--browncolor);
   font-size: 2rem;
   margin-bottom: 2rem;
 }
 
+.username {
+  color: var(--greencolor);
+  font-size: 2rem;
+  font-style: italic;
+}
+
 p {
+  color: var(--browncolor);
+  font-size: 1.2rem;
   margin-bottom: 2rem;
+  font-weight: 400;
 }
 
 span {
-  font-size: 1rem;
-}
-
-main {
-  height: 85vh;
+  font-size: 1.5rem;
+  color: var(--greencolor);
+  font-weight: 600;
 }
 
 .profile {
   height: 79vh;
 }
 
+.profile-pic-info {
+  /* background-color: rgba(255, 255, 255, 0.434); */
+  display: flex;
+  gap: 2%;
+}
+
 .profile-info {
+  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
+.about-p {
+  width: 20vw;
+}
+
 .profile img {
-  width: 30vw;
-  height: 60vh;
+  border-radius: 10px;
+  min-width: 20vw;
+  min-height: 40vh;
 }
 
 .profile-pic-info {
@@ -50,15 +74,49 @@ main {
   gap: 5%;
 }
 
+.profile-btn a {
+  background-color: var(--whitecolor);
+  color: var(--browncolor);
+  border-radius: 20px;
+  margin: 1.5rem;
+  text-decoration: none;
+  border: 0.02rem solid var(--browncolor);
+  min-height: 4vh;
+  min-width: 8vw;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-btn a:hover {
+  border: 0.02rem solid var(--whitecolor);
+  background-color: var(--browncolor);
+  color: var(--whitecolor);
+}
+
 .delete-btn {
+  background-color: var(--whitecolor);
+  color: var(--browncolor);
+  border: 0.02rem solid var(--browncolor);
   margin: 2rem;
   border-radius: 20px;
-  width: 8vw;
-  height: 3vh;
+  min-height: 4vh;
+  min-width: 8vw;
   font-size: 0.8rem;
   text-align: center;
 }
+
+form button:hover {
+  border: 0.02rem solid var(--whitecolor);
+  background-color: var(--browncolor);
+  color: var(--whitecolor);
+}
+
 @media only screen and (max-width: 400px) {
+  main {
+    margin: 1rem;
+  }
   h1 {
     margin-top: 1.5rem;
   }
@@ -73,6 +131,14 @@ main {
     margin-bottom: 2rem;
   }
 
+  .about-p {
+    width: 40vw;
+  }
+
+  .username {
+    font-size: 1rem;
+  }
+
   span {
     font-size: 0.8rem;
   }
@@ -81,14 +147,32 @@ main {
   }
 
   .profile-pic-info {
-    height: 55vh;
+    height: 50vh;
   }
+
   .profile-info {
     margin: 0.5rem;
   }
 
   .profile img {
-    width: 55vw;
-    height: 50vh;
+    width: 40vw;
+    height: 15vh;
+  }
+  .profile-btn a {
+    font-size: 0.7rem;
+    width: 35vw;
+    height: 6vh;
+  }
+  .profile-btn {
+    gap: 0;
+  }
+
+  .delete-btn {
+    font-size: 0.7rem;
+    width: 35vw;
+    height: 6vh;
+    margin: 0;
   }
 }
+
+

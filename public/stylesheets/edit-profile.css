@@ -1,5 +1,5 @@
 h1 {
-  margin-top: 2rem;
+  margin-top: 0;
   text-align: center;
 }
 
@@ -17,12 +17,12 @@ span {
 }
 
 main {
-  height: 85vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10%;
+  gap: 20%;
 }
 
 .edit-profile {
@@ -48,11 +48,21 @@ main {
   flex-direction: column;
   /* gap: 5%; */
 }
+
 form input {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   border-radius: 20px;
   height: 3.5vh;
   margin-bottom: 0.2rem;
+  border: 0.02rem solid var(--browncolor);
+  background-color: var(--whitecolor);
+  color: var(--browncolor);
+}
+
+.img-input {
+  background-color: transparent;
+  border-radius: 0;
+  border: none;
 }
 
 form {
@@ -69,8 +79,10 @@ form {
 }
 
 form label {
+  margin: 0.5rem;
+  color: var(--browncolor);
+  font-weight: 600;
   font-size: 1rem;
-  /* margin: 2rem; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -78,9 +90,15 @@ form label {
   width: 20vw;
 }
 
+form textarea {
+  width: 15vw;
+  height: 20vh;
+  border: 0.02rem solid var(--browncolor);
+  background-color: var(--whitecolor);
+}
+
 .edit-profile-btn {
   margin-top: 1rem;
-  height: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -88,13 +106,22 @@ form label {
 }
 
 button {
-  margin: 2rem;
+  border: 0.02rem solid var(--browncolor);
+  background-color: var(--whitecolor);
+  color: var(--browncolor);
+  margin: 5rem;
   border-radius: 20px;
   width: 8vw;
-  height: 3vh;
+  height: 10vh;
   font-size: 0.8rem;
   text-align: center;
 }
+
+.button {
+  padding: 0.7rem;
+  font-size: 0.8rem;
+}
+
 @media only screen and (max-width: 400px) {
   h1 {
     margin-top: 1.5rem;
@@ -113,16 +140,32 @@ button {
   span {
     font-size: 0.8rem;
   }
+
   main {
-    height: 80vh;
+    height: 77vh;
+    gap: 5%;
+  }
+
+  form input {
+    font-size: 0.7rem;
+    text-align: center;
+  }
+
+  #imageUrl {
+    border: none;
+    background-color: transparent;
   }
 
   .edit-profile {
     height: 55vh;
   }
+
   .profile-info {
     margin: 0.5rem;
   }
- /*  .edit-profile-btn {
-  } */
+  .button {
+    padding: 0.4rem;
+    width: 20vw;
+    height: 20vh;
+  }
 }

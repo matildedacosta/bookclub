@@ -4,16 +4,22 @@
 <h1>Friends list</h1>
 
 <section class="friends">
-  <div class="friends-pic-info">
-    <div class="default-profile-pic">
     {{#each user.friendsList}}
-      <img class="defaul-profile-pic" src="{{this.imageUrl}}" alt="friend-picture" />
-   </div>
+  <div class="friends-pic-info">
+      <div>
+        <img
+          class="default-profile-pic"
+          src="{{this.imageUrl}}"
+          alt="friend-picture"
+        />
+      </div>
       <div class="friends-info">
-      <h4>{{this.name}}</h4>
-      <h5>{{this.username}}</h5>
-    </div>
-      <a href="/remove-friend/{{this._id}}">Remove friend</a>
+        <h4>{{this.name}}</h4>
+        <h5>{{this.username}}</h5>
+      </div>
+      <div class="friends-button">
+      <a class="remove-friends" href="/remove-friend/{{this._id}}">Remove friend</a>
+      </div>
     {{/each}}
   </div>
 </section>

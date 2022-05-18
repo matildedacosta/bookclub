@@ -5,24 +5,19 @@
 <h1>Edit Profile</h1>
 <section class="edit-profile">
   <div class="profile-info">
-    <form class="edit-profile-form"
+    <form
+      class="edit-profile-form"
       action="/{{currentUser._id}}/edit"
       method="post"
       enctype="multipart/form-data"
     >
       <label for="imageUrl">Image</label>
-      <input type="file" name="imageUrl" id="imageUrl" />
+      <div class="img-input">
+        <input class="img-input" type="file" name="imageUrl" id="imageUrl" />
+      </div>
       <label>
         Name:
         <input type="text" name="name" value=" {{currentUser.name}}" />
-      </label>
-      <label>
-        Description:
-        <input
-          type="text"
-          name="description"
-          value=" {{currentUser.description}}"
-        />
       </label>
       <label>
         Username:
@@ -39,6 +34,14 @@
           name="password"
           value=" {{currentUser.passwordHash}}"
         />
+      </label>
+      <label>
+        Description:
+        <textarea
+          type="text"
+          name="description"
+          value=" {{currentUser.description}}"
+        ></textarea>
       </label>
 
       <button class="button edit-profile-btn" type="submit">Update</button>

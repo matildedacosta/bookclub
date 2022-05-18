@@ -6,7 +6,7 @@ main {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 85vh;
+  height: 87vh;
   gap: 2%;
 }
 
@@ -18,6 +18,7 @@ form {
 }
 
 form label {
+  color: var(--browncolor);
   font-size: 1.2rem;
   margin: 2rem;
   display: flex;
@@ -28,18 +29,29 @@ form label {
 }
 
 form input {
+  background-color: var(--whitecolor);
+  border: 0.02rem solid var(--browncolor);
   margin: 0.5rem;
   border-radius: 20px;
   height: 3.5vh;
 }
 
 form button {
+  background-color: var(--whitecolor);
+  color: var(--browncolor);
+  border: 0.02rem solid var(--browncolor);
   margin: 2rem;
   border-radius: 20px;
-  width: 5vw;
-  height: 3vh;
+  width: 6vw;
+  height: 4vh;
   font-size: 0.8rem;
   text-align: center;
+}
+
+form button:hover {
+  border: 0.02rem solid var(--whitecolor);
+  background-color: var(--browncolor);
+  color: var(--whitecolor);
 }
 
 .sign-up-btn {
