@@ -144,14 +144,14 @@ router.get("/:id/reccommend", isLoggedIn, (req, res, next) => {
     .catch((err) => next(err));
 });
 
-router.get("/:id/reccommend", isLoggedIn, (req, res, next) => {
+/* router.get("/:id/reccommend", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
   User.findById(id)
     .then(() => {
       res.render("books/reccommend-books");
     })
     .catch((err) => next(err));
-});
+}); */
 
 router.post("/:id/reccommend", (req, res, next) => {
   const { id } = req.params;

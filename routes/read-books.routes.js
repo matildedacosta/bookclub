@@ -57,7 +57,7 @@ router.get("/add-bookshelf/:id", (req, res, next) => {
             { new: true }
           ).then((updatedUser) => {
             req.session.user = updatedUser;
-            res.redirect("/future-books/bookshelf");
+            res.redirect("/read-books/bookshelf");
           });
         });
       } else {
@@ -80,7 +80,7 @@ router.get("/add-bookshelf/:id", (req, res, next) => {
             { new: true }
           ).then((updatedUser) => {
             req.session.user = updatedUser;
-            res.redirect("/future-books/bookshelf");
+            res.redirect("/read-books/bookshelf");
           });
         });
       }
