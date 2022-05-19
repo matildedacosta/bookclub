@@ -89,18 +89,13 @@ img {
 }
 
 footer {
-  /*  height: 10vh;
-  background-color: #4d4847;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  align-content: stretch; */
-
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   background-color: #d4a37363;
   color: var(--whitecolor);
-  min-height: 9vh;
+  min-height: 5vh;
   border-top: 0.05rem solid var(--browncolor);
   padding: 0.5rem;
   display: flex;

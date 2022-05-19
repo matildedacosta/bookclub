@@ -19,6 +19,8 @@ main {
 .each-reading-book {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .book-info {
@@ -30,7 +32,7 @@ main {
 
 .picture-and-info {
   display: flex;
-  gap: 10%;
+  gap: 5%;
 }
 
 .picture-and-info img {
@@ -39,10 +41,12 @@ main {
 }
 
 .reading-info {
+  padding: 5rem;
   border-radius: 20px;
   height: 45vh;
+  width: 60vw;
   background-color: rgba(255, 255, 255, 0.349);
-  margin: 3rem;
+  margin: 0 10rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,6 +152,7 @@ main {
 }
 
 /* ANIMATION PROGRESSBAR */
+/* ANIMATION PROGRESSBAR */
 @keyframes growProgressBar {
   0%,
   33% {
@@ -166,8 +171,8 @@ main {
 
 div[role="progressbar"] {
   --size: 10rem;
-  --fg: #369;
-  --bg: #def;
+  --fg: #d4a373;
+  --bg: #faedcd;
   --pgPercentage: var(--value);
   animation: growProgressBar 3s 1 forwards;
   width: var(--size);
@@ -177,9 +182,9 @@ div[role="progressbar"] {
   place-items: center;
   background: radial-gradient(
       closest-side,
-      white 80%,
+      #fefae0 80%,
       transparent 0 99.9%,
-      white 0
+      #fefae0 0
     ),
     conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0);
   font-family: Helvetica, Arial, sans-serif;
@@ -221,8 +226,7 @@ div[role="progressbar"]::before {
   .reading-info {
     padding: 5rem;
     width: 80vw;
-    height: 60vh;
-    margin: 2rem;
+    height: 64vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -233,21 +237,22 @@ div[role="progressbar"]::before {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 2.2rem;
+    margin-top: 0.5rem;
   }
 
   .pages-input {
-    font-size: 0.7rem;
+    font-size: 0.5rem;
     width: 10vw;
     height: 3vh;
     text-align: center;
   }
 
   .total-pages {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
   }
 
   .update-reading-button {
+    margin: 0.3rem;
     width: 16vw;
     height: 3vh;
     font-size: 0.5rem;
@@ -255,6 +260,7 @@ div[role="progressbar"]::before {
   }
 
   .reading-buttons {
+    margin-top: 1.5rem;
     display: flex;
     flex-wrap: wrap;
     gap: 5%;
@@ -274,6 +280,6 @@ div[role="progressbar"]::before {
   }
 
   div[role="progressbar"] {
-    --size: 6rem;
+    --size: 3rem;
   }
 }

@@ -4,8 +4,9 @@
 <h1>Friends list</h1>
 
 <section class="friends">
-    {{#each user.friendsList}}
-  <div class="friends-pic-info">
+
+  {{#each user.friendsList}}
+    <div class="friends-pic-info">
       <div>
         <img
           class="default-profile-pic"
@@ -18,8 +19,9 @@
         <h5>{{this.username}}</h5>
       </div>
       <div class="friends-button">
-      <a class="remove-friends" href="/remove-friend/{{this._id}}">Remove friend</a>
+        <a class="remove-friends" href="/remove-friend/{{this._id}}">Remove
+          friend</a>
       </div>
-    {{/each}}
-  </div>
+    </div>
+  {{/each}}
 </section>

@@ -1,9 +1,22 @@
-<main>
-  <h1>Friends results</h1>
+<head>
+  <link rel="stylesheet" href="/stylesheets/books.css" />
+</head>
 
-  {{#each user}}
-    {{this.username}}
+<h1>Friends results</h1>
 
-    <a href="/search/friends-details/{{this._id}}">Friend Details</a>
-  {{/each}}
-</main>
+{{#each user}}
+
+  <section class="book-results">
+    <div class="each-book-result">
+      <img src="{{this.imageUrl}}" alt="profile picture" />
+
+      <h4 class="username">{{this.username}}</h4>
+
+      <a
+        class="friend-details-button"
+        href="/search/friends-details/{{this._id}}"
+      >Friend Details</a>
+
+    </div>
+  </section>
+{{/each}}

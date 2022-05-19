@@ -12,6 +12,7 @@
     <img src="{{imageUrl}}" alt="book-cover" />
 
 {{!  Botton to count pages }}
+
 <div class="book-info">
     <h4>{{title}}</h4>
 <div role="progressbar" aria-valuenow="{{currentPage}}" aria-valuemin="0" aria-valuemax="{{pageCount}}" style="--value:{{#divide currentPage pageCount}}{{/divide}}"></div>
@@ -25,7 +26,7 @@
     placeholder="0"
     value="{{currentPage}}"
   />
-   <span>/</span>  <span class="total-pages" id="pageCount_{{_id}}">{{pageCount}}</span>
+   <span class="total-pages">/</span>  <span class="total-pages" id="pageCount_{{_id}}">{{pageCount}}</span>
   <button class="update-reading-button" type="submit">Update</button>
    </div>
 </form>

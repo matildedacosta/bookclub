@@ -75,6 +75,7 @@ span {
 }
 
 .profile-btn a {
+  margin-top: 0.8rem;
   background-color: var(--whitecolor);
   color: var(--browncolor);
   border-radius: 20px;
@@ -158,21 +159,23 @@ form button:hover {
     width: 40vw;
     height: 15vh;
   }
+
   .profile-btn a {
+    margin-top: 0.8rem;
     font-size: 0.7rem;
-    width: 35vw;
-    height: 6vh;
+    width: 30vw;
+    height: 5vh;
   }
+
   .profile-btn {
     gap: 0;
   }
 
   .delete-btn {
+    margin-top: 0.3rem;
     font-size: 0.7rem;
-    width: 35vw;
-    height: 6vh;
+    width: 30vw;
+    height: 5vh;
     margin: 0;
   }
 }
-
-

@@ -108,7 +108,7 @@ router.get(
 
     console.log("list", req.session.user.friendsList);
     if (req.session.user.friendsList.includes(id)) {
-      res.redirect("/");
+      res.redirect("/friends");
       return;
     }
 

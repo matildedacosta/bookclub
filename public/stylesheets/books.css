@@ -1,3 +1,7 @@
+.username {
+  margin-top: 1rem;
+}
+
 .book-results img {
   min-width: 8vw;
   min-height: 20vh;
@@ -79,7 +83,7 @@
 
   .each-book-result a {
     margin: 1rem;
-    height: 10vh;
+    height: 3vh;
     width: 25vw;
     font-size: 0.7rem;
   }

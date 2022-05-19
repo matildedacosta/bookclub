@@ -1,10 +1,20 @@
-<main>
-  <h1>Friends details</h1>
+<head>
+  <link rel="stylesheet" href="/stylesheets/profile.css" />
+</head>
+<h1>Friends details</h1>
 
-  <img src="{{user.imageUrl}}" alt="profile picture" />
-
-  {{user.username}}
-  {{user.description}}
-
-  <a href="/add-friend/{{user._id}}">Add friend</a>
-</main>
+<section class="profile">
+  <div class="profile-pic-info">
+    <div class="profile-image">
+      <img src="{{user.imageUrl}}" alt="profile picture" />
+    </div>
+    <div class="profile-info">
+      <h3>Hi friend!</h3>
+      <p>My name is <span> {{user.username}}</span> </p>
+      <p class="about-p"><span>About me: <br /></span>
+        {{user.description}}</p>
+    </div>
+  </div>
+  <div class="profile-btn">
+    <a href="/add-friend/{{user._id}}">Add friend</a>
+  </div>

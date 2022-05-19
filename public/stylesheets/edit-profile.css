@@ -17,7 +17,7 @@ span {
 }
 
 main {
-  height: 100vh;
+  height: 78vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,6 +49,13 @@ main {
   /* gap: 5%; */
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 form input {
   margin-top: 1rem;
   border-radius: 20px;
@@ -63,13 +70,6 @@ form input {
   background-color: transparent;
   border-radius: 0;
   border: none;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .text-description {
@@ -90,6 +90,9 @@ form label {
   width: 20vw;
 }
 
+/* .description {
+  margin-bottom: 5rem;
+} */
 form textarea {
   width: 15vw;
   height: 20vh;
@@ -115,6 +118,12 @@ button {
   height: 10vh;
   font-size: 0.8rem;
   text-align: center;
+}
+
+form button:hover {
+  border: 0.02rem solid var(--whitecolor);
+  background-color: var(--browncolor);
+  color: var(--whitecolor);
 }
 
 .button {

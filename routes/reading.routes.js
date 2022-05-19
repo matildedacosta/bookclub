@@ -47,6 +47,7 @@ router.get("/add-reading-book/:id", isLoggedIn, (req, res, next) => {
           description: bookFromApi.volumeInfo.description,
           publisher: bookFromApi.volumeInfo.publisher,
           publishedDate: bookFromApi.volumeInfo.publishedDate,
+          pageCount: bookFromApi.volumeInfo.pageCount,
           averageRating: bookFromApi.volumeInfo.averageRating,
         }).then((book) => {
           User.findByIdAndUpdate(
@@ -69,6 +70,7 @@ router.get("/add-reading-book/:id", isLoggedIn, (req, res, next) => {
           description: bookFromApi.volumeInfo.description,
           publisher: bookFromApi.volumeInfo.publisher,
           publishedDate: bookFromApi.volumeInfo.publishedDate,
+          pageCount: bookFromApi.volumeInfo.pageCount,
           averageRating: bookFromApi.volumeInfo.averageRating,
           imageUrl: bookFromApi.volumeInfo.imageLinks.thumbnail,
         }).then((book) => {

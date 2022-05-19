@@ -1,0 +1,96 @@
+h3 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+main {
+  height: 87vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20%;
+  color: var(--browncolor);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.reccommend-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.reccommend-form img {
+  width: 16vw;
+  height: 40vh;
+}
+
+form select {
+  padding: 0.8rem;
+  font-size: 1rem;
+  width: 5vw;
+  height: 8vh;
+  border-radius: 20px;
+  border: 0.02rem solid var(--browncolor);
+  background-color: var(--whitecolor);
+  color: var(--browncolor);
+  text-align: center;
+}
+
+.for-friends {
+  font-size: 1rem;
+  margin: 2rem 2rem 1rem;
+}
+
+button {
+  border: 0.02rem solid var(--browncolor);
+  background-color: var(--whitecolor);
+  color: var(--browncolor);
+  border-radius: 20px;
+  margin-top: 1rem;
+  width: 10vw;
+  height: 4vh;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+form button:hover {
+  border: 0.02rem solid var(--whitecolor);
+  background-color: var(--browncolor);
+  color: var(--whitecolor);
+}
+
+@media only screen and (max-width: 400px) {
+  h3 {
+    font-size: 1.6rem;
+    margin: 1rem;
+  }
+
+  .reccommend-form img {
+    width: 30vw;
+    height: 30vh;
+  }
+
+  form select {
+    padding: 0.6rem;
+    font-size: 0.8rem;
+    width: 25vw;
+    height: 8vh;
+    text-align: center;
+  }
+
+  button {
+    margin-top: 1rem;
+    width: 30vw;
+    height: 5vh;
+    font-size: 0.7rem;
+    text-align: center;
+  }
+}
