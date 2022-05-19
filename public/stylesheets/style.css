@@ -39,7 +39,7 @@ main {
 }
 
 .navbar {
-  padding-left: 3rem;
+  padding-left: 0.5rem;
   color: var(--whitecolor);
 }
 
