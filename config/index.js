@@ -56,15 +56,14 @@ module.exports = (app) => {
       secret: process.env.SESSION_SECRET || "super hyper secret key",
       resave: true,
       saveUninitialized: false,
-      cookie: {
+      store: MongoStore.create({
+        mongoUrl: MONGO_URI,
+        ttl: 60 * 60 * 60,
+      }),cookie: {
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
         secure: process.env.NODE_ENV === "production",
         httpOnly: true,
       },
-      store: MongoStore.create({
-        mongoUrl: MONGO_URI,
-        ttl: 60 * 60 * 60,
-      }),
     })
   );
 };
