@@ -59,10 +59,10 @@ module.exports = (app) => {
       store: MongoStore.create({
         mongoUrl: MONGO_URI,
         ttl: 60 * 60 * 60,
-      }),cookie: {
+      }),
+      cookie: {
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
         secure: process.env.NODE_ENV === "production",
-        httpOnly: true,
       },
     })
   );
