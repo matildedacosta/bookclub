@@ -60,7 +60,7 @@ form input {
   margin-top: 1rem;
   border-radius: 20px;
   height: 3.5vh;
-  margin-bottom: 0.2rem;
+  /*  margin-bottom: 0.2rem; */
   border: 0.02rem solid var(--browncolor);
   background-color: var(--whitecolor);
   color: var(--browncolor);
@@ -79,7 +79,7 @@ form input {
 }
 
 form label {
-  margin: 0.5rem;
+  margin: 0.1rem;
   color: var(--browncolor);
   font-weight: 600;
   font-size: 1rem;
@@ -98,6 +98,7 @@ form textarea {
   height: 20vh;
   border: 0.02rem solid var(--browncolor);
   background-color: var(--whitecolor);
+  border-radius: 20px;
 }
 
 .edit-profile-btn {
@@ -108,7 +109,7 @@ form textarea {
   /* gap: 5%; */
 }
 
-button {
+form button {
   border: 0.02rem solid var(--browncolor);
   background-color: var(--whitecolor);
   color: var(--browncolor);
@@ -133,7 +134,10 @@ form button:hover {
 
 @media only screen and (max-width: 400px) {
   h1 {
-    margin-top: 1.5rem;
+    margin: 1rem;
+  }
+  main {
+    height: 90vh;
   }
 
   h3 {
@@ -150,11 +154,6 @@ form button:hover {
     font-size: 0.8rem;
   }
 
-  main {
-    height: 77vh;
-    gap: 5%;
-  }
-
   form input {
     font-size: 0.7rem;
     text-align: center;
@@ -166,7 +165,7 @@ form button:hover {
   }
 
   .edit-profile {
-    height: 55vh;
+    height: 100vh;
   }
 
   .profile-info {
@@ -176,5 +175,9 @@ form button:hover {
     padding: 0.4rem;
     width: 20vw;
     height: 20vh;
+  }
+  form textarea {
+    width: 60vw;
+    height: 10vh;
   }
 }

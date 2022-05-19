@@ -144,7 +144,7 @@ router.get("/remove-friend/:id", isLoggedIn, (req, res, next) => {
     .then((currentUser) => {
       req.session.user = currentUser;
       req.app.locals.currentUser = currentUser;
-      res.redirect("/");
+      res.redirect("/friends");
     })
     .catch((err) => next(err));
 });

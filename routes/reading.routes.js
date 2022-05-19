@@ -20,7 +20,8 @@ router.get("/reading", isLoggedIn, (req, res, next) => {
     .then((user) => {
       //Weeeeeeeeeeee  🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
       res.render("books/reading", { user });
-    });
+    })
+    .catch((err) => next(err));
 });
 
 //add to reading books
@@ -86,7 +87,8 @@ router.get("/add-reading-book/:id", isLoggedIn, (req, res, next) => {
           });
         });
       }
-    });
+    })
+    .catch((err) => next(err));
 });
 
 //delete favorite book

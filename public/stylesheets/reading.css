@@ -12,6 +12,10 @@ h4 {
   text-align: center;
 }
 
+h5 {
+  color: var(--browncolor);
+}
+
 main {
   height: 90vh;
 }
@@ -103,6 +107,7 @@ main {
   align-items: center;
   text-align: center;
 }
+
 .reading-buttons a {
   color: var(--browncolor);
   background-color: var(--whitecolor);
@@ -131,7 +136,9 @@ main {
 }
 
 .no-readings a {
-  margin: 8rem;
+  color: var(--browncolor);
+  background-color: var(--whitecolor);
+  margin: 4rem;
   text-decoration: none;
   border-radius: 20px;
   border: 0.02rem solid var(--browncolor);
@@ -143,12 +150,23 @@ main {
   align-items: center;
 }
 
+.no-readings a:hover {
+  border: 0.02rem solid var(--whitecolor);
+  background-color: var(--browncolor);
+  color: var(--whitecolor);
+}
+
 .no-readings {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 75vh;
+}
+
+.no-readings img {
+  height: 20vh;
+  width: 16vw;
 }
 
 /* ANIMATION PROGRESSBAR */

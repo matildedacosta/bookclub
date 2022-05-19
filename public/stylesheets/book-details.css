@@ -25,14 +25,18 @@ p {
   line-height: 1.6;
 }
 
+.description-details {
+  max-height: 35vh;
+  overflow-y: scroll;
+}
 .details-title {
   color: var(--browncolor);
   font-weight: 600;
 }
 
 .book-picture-info-and-buttons img {
-  min-height: 50vh;
-  min-width: 10vw;
+  height: 50vh;
+  width: 17vw;
 }
 
 .book-picture-info-and-buttons {
@@ -94,6 +98,9 @@ p {
 }
 
 @media only screen and (max-width: 400px) {
+  main {
+    height: 95vh;
+  }
   h1 {
     margin-bottom: 0.6rem;
   }
@@ -105,23 +112,33 @@ p {
   }
 
   h3 {
-    margin-top: 2rem;
+    margin-top: 1rem;
     font-size: 1rem;
   }
-
+  h5 {
+    font-size: 0.7rem;
+    padding: 0 2rem;
+  }
   p {
     margin-top: 1rem;
     text-align: justify;
     font-size: 0.7rem;
     line-height: 1.6;
+    /*  width: 50vw; */
+    padding: 0 3rem;
+  }
+
+  .description-details {
+    height: 12vh;
+    overflow-y: scroll;
   }
 
   .book-details-info {
     width: 80vw;
   }
   .book-picture-info-and-buttons img {
-    min-height: 35vh;
-    min-width: 10vw;
+    height: 18vh;
+    width: 20vw;
   }
 
   .book-picture-info-and-buttons {
@@ -147,16 +164,10 @@ p {
     align-items: center;
   }
 
-  .a-button {
-    padding: 0.7rem;
-    margin: 0.2rem;
-    text-decoration: none;
-    border: 0.02rem solid var(--browncolor);
-    min-height: 2vh;
-    min-width: 15vw;
-    font-size: 0.7rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .book-details-buttons a {
+    font-size: 0.6rem;
+    margin-top: 0.3rem;
+    height: 4vh;
+    width: 30vw;
   }
 }
