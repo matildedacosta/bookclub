@@ -54,22 +54,11 @@ module.exports = (app) => {
   app.use(
     session({
       secret: process.env.SESSION_SECRET || "super hyper secret key",
-      resave: true,
+      resave: false,
       saveUninitialized: false,
       store: MongoStore.create({
         mongoUrl: MONGO_URI,
-        ttl: 60 * 60 * 60,
       }),
-      cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 365,
-        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-        secure: process.env.NODE_ENV === "production",
-      },
     })
   );
-
-  app.use((req, res, next) => {
-    req.user = req.session.user || null;
-    next();
-  });
 };
