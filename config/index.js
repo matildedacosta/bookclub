@@ -61,7 +61,7 @@ module.exports = (app) => {
         ttl: 60 * 60 * 60,
       }),
       cookie: {
-        path:"/",
+        maxAge: 1000 * 60 * 60 * 24 * 365,
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
         secure: process.env.NODE_ENV === "production",
       },
